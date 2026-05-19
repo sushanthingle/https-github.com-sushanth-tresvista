@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy:       #07122B;
+  --navy-dark:  #030B1A;
+  --tvblue:     #1B4FBE;
+  --tvblue-light:#2E78E8;
+  --tvorange:   #EF8014;
+  --surface:    #F4F7FB;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--navy);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── custom scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F4F7FB; }
+::-webkit-scrollbar-thumb { background: var(--tvblue); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--tvblue-light); }
+
+/* ── noise texture overlay ── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* ── gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #2E78E8 0%, #EF8014 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-white {
+  background: linear-gradient(135deg, #ffffff 30%, rgba(255,255,255,0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── animated mesh background ── */
+.mesh-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(27,79,190,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(239,128,20,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(27,79,190,0.08) 0%, transparent 70%);
+}
+
+/* ── svg path draw animation ── */
+@keyframes drawPath {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.draw-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 1.5s ease forwards;
+}
+
+/* ── section entrance ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── hero blob ── */
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50%       { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+.blob { animation: blobMorph 8s ease-in-out infinite; }
+
+/* ── progress bar ── */
+.progress-bar {
+  background: linear-gradient(90deg, var(--tvblue) 0%, var(--tvorange) 100%);
+}
+
+/* ── shimmer sweep ── */
+@keyframes shimmerSweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+.shimmer-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.16) 50%, transparent 65%);
+  animation: shimmerSweep 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── scan border line ── */
+@keyframes scanRight {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(200%);  }
+}
+@keyframes scanLeft {
+  from { transform: translateX(200%);  }
+  to   { transform: translateX(-100%); }
+}
+
+/* ── spotlight card ── */
+.spotlight-card { position: relative; overflow: hidden; }
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.spotlight-card:hover::before { opacity: 1; }
+
+/* ── animated gradient border ── */
+@keyframes borderSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.gradient-border {
+  position: relative;
+  border-radius: 16px;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--tvblue), var(--tvorange), var(--tvblue));
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradientX 4s ease infinite;
+  pointer-events: none;
+}
+
+/* ── aurora pulse ── */
+@keyframes auroraPulse {
+  0%, 100% { opacity: 0.12; transform: scale(1);    }
+  50%       { opacity: 0.22; transform: scale(1.06); }
+}
+.aurora-pulse {
+  animation: auroraPulse 8s ease-in-out infinite;
+}
+
+/* ── particle float ── */
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0px);   opacity: 0.3; }
+  50%       { transform: translateY(-18px); opacity: 0.7; }
+}
+
+/* ── hide default cursor on pointer devices (custom cursor takes over) ── */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+
+/* ── reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .blob,
+  .shimmer-sweep,
+  .aurora-pulse,
+  [class*="animate-"] {
+    animation: none !important;
+  }
+  /* pause framer-motion marquees */
+  [style*="translateX"] {
+    animation-play-state: paused !important;
+  }
+}
+
+/* ── section transition — dark-to-white ── */
+.section-fade-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #ffffff);
+  pointer-events: none;
+  z-index: 2;
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .border-l-gradient {
+    border-left: 2px solid;
+    border-image: linear-gradient(to bottom, #1B4FBE, #EF8014) 1;
+  }
+}
