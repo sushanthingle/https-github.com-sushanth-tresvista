@@ -3,12 +3,14 @@ import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion'
 import { Building2, TrendingUp, Briefcase, ChevronRight } from 'lucide-react'
 
+const BLUE = '#1B4FBE'
+
 const categories = [
   {
     id: 0,
     icon: Building2,
     title: 'Corporates',
-    color: '#1B4FBE',
+    color: BLUE,
     sub: 'Driving enterprise transformation across corporate structures',
     types: ['Public Companies', 'Private Companies', 'Entrepreneurs'],
     tags: ['Portfolio Companies', 'Publicly Listed Companies'],
@@ -18,7 +20,7 @@ const categories = [
     id: 1,
     icon: TrendingUp,
     title: 'Asset Managers',
-    color: '#EF8014',
+    color: BLUE,
     sub: 'Full investment lifecycle execution across every strategy',
     types: [
       'Private Equity', 'Public Equity', 'Family Office', 'Real Estate',
@@ -31,7 +33,7 @@ const categories = [
     id: 2,
     icon: Briefcase,
     title: 'Advisors',
-    color: '#2E78E8',
+    color: BLUE,
     sub: 'Empowering advisory firms with embedded intelligence',
     types: ['Investment Banks', 'Consultants', 'Investment Consultants', 'Placement Agents'],
     tags: ['Transaction Advisory', 'Strategic Consulting'],
@@ -259,7 +261,7 @@ export default function WhoWeWorkWith() {
                   className="inline-flex items-center gap-6 flex-shrink-0 text-sm font-medium text-navy/50 px-4"
                 >
                   {item}
-                  <span className="w-[3px] h-[3px] rounded-full bg-tvblue/35 flex-shrink-0" />
+                  <span className="w-[3px] h-[3px] rounded-full bg-tvblue/40 flex-shrink-0" />
                 </span>
               ))}
             </motion.div>
@@ -280,7 +282,7 @@ export default function WhoWeWorkWith() {
                   className="inline-flex items-center gap-6 flex-shrink-0 text-sm font-medium text-navy/38 px-4"
                 >
                   {item}
-                  <span className="w-[3px] h-[3px] rounded-full bg-tvorange/35 flex-shrink-0" />
+                  <span className="w-[3px] h-[3px] rounded-full bg-tvblue/40 flex-shrink-0" />
                 </span>
               ))}
             </motion.div>

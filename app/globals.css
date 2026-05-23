@@ -18,7 +18,7 @@ html {
 body {
   background: #ffffff;
   color: var(--navy);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-montserrat), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -170,10 +170,7 @@ body {
   50%       { transform: translateY(-18px); opacity: 0.7; }
 }
 
-/* ── hide default cursor on pointer devices (custom cursor takes over) ── */
-@media (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
-}
+/* default OS cursor used throughout */
 
 /* ── reduced motion ── */
 @media (prefers-reduced-motion: reduce) {

@@ -6,12 +6,12 @@ import WhoWeWorkWith from './components/WhoWeWorkWith'
 import Contact       from './components/Contact'
 import Footer        from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
-import CustomCursor  from './components/CustomCursor'
+import Loader        from './components/Loader'
 
 export default function Home() {
   return (
     <main>
-      <CustomCursor />
+      <Loader />
       <ScrollProgress />
       <Navbar />
       <VideoHero />

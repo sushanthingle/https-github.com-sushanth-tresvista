@@ -100,23 +100,12 @@ export default function WhoWeAre() {
             {/* image container */}
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-[5/4]"
               style={{ boxShadow: '0 24px 80px rgba(7,18,43,0.10)' }}>
-              {/* real image — place /public/images/who-we-are.jpg to activate */}
+              {/* placeholder: corporate office / people — replace with your own image */}
               <img
-                src="/images/who-we-are.jpg"
-                alt="TresVista team"
+                src="https://picsum.photos/seed/tresvista-office/960/640"
+                alt="TresVista office"
                 className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = '0' }}
               />
-              {/* branded placeholder — always behind the real image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#EEF4FF] via-[#F0F6FF] to-surface flex flex-col items-center justify-center gap-6">
-                {/* brand mark */}
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                  <polygon points="32,4 62,60 2,60" fill="#1B4FBE" opacity="0.15"/>
-                  <polygon points="32,4 62,60 2,60" fill="none" stroke="#1B4FBE" strokeWidth="1.5" opacity="0.40"/>
-                  <polygon points="32,14 54,56 10,56" fill="#EF8014" opacity="0.20"/>
-                </svg>
-                <p className="text-navy/30 text-xs font-semibold tracking-[0.18em] uppercase">Team / Office Photo</p>
-              </div>
 
               {/* stat overlay — bottom-left badge */}
               <div className="absolute bottom-5 left-5 right-5 flex gap-3">
