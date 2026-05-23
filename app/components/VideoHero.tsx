@@ -83,32 +83,44 @@ export default function VideoHero() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* ── video background ── */}
+      {/* ── YouTube video background ── */}
       <motion.div
-        className="absolute inset-0 origin-center pointer-events-none"
+        className="absolute inset-0 origin-center pointer-events-none overflow-hidden"
         style={{ scale: videoScale }}
       >
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ pointerEvents: 'none' }}
-        >
-          <source
-            src="https://videos.pexels.com/video-files/3182812/3182812-hd_1920_1080_30fps.mp4"
-            type="video/mp4"
-          />
-        </video>
+        <iframe
+          src="https://www.youtube.com/embed/s9xk77X4m5c?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&playlist=s9xk77X4m5c&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3"
+          allow="autoplay; encrypted-media"
+          title="Background video"
+          className="absolute pointer-events-none"
+          style={{
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100vw',
+            height: '56.25vw',
+            minHeight: '100%',
+            minWidth: 'calc(100% * 16 / 9)',
+            border: 'none',
+          }}
+        />
       </motion.div>
 
-      {/* ── overlays ── */}
-      <div className="absolute inset-0 bg-[#020811]/52 pointer-events-none" />
+      {/* ── overlays — layered for strong text contrast ── */}
+      {/* base dark fill */}
+      <div className="absolute inset-0 bg-[#020811]/62 pointer-events-none" />
+      {/* left-heavy directional gradient — keeps headline zone dark */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, rgba(2,8,17,0.65) 0%, rgba(2,8,17,0.15) 60%, transparent 100%)' }}
+        style={{ background: 'linear-gradient(to right, rgba(2,8,17,0.82) 0%, rgba(2,8,17,0.55) 45%, rgba(2,8,17,0.18) 75%, transparent 100%)' }}
       />
-      {/* no bottom gradient — stats must remain clearly visible */}
+      {/* top vignette — eyebrow + headline always legible */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(to bottom, rgba(2,8,17,0.45) 0%, transparent 40%)' }}
+      />
+      {/* bottom vignette — stats strip clearly visible */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(to top, rgba(2,8,17,0.55) 0%, transparent 35%)' }}
+      />
 
       {/* ── content ── */}
       <motion.div
@@ -128,7 +140,7 @@ export default function VideoHero() {
             animate={{ width: 40 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           />
-          <span className="text-[11px] font-medium tracking-[0.28em] uppercase text-white/50">
+          <span className="text-[11px] font-medium tracking-[0.28em] uppercase text-white/70">
             Enterprise Intelligence Orchestration
           </span>
         </motion.div>
@@ -176,7 +188,7 @@ export default function VideoHero() {
                 initial={{ opacity: 0, y: 12, filter: 'blur(4px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ delay: 0.22, duration: 0.65 }}
-                className="text-white/55 text-base lg:text-lg leading-relaxed max-w-[520px] mb-8 font-normal"
+                className="text-white/85 text-base lg:text-lg leading-relaxed max-w-[520px] mb-8 font-normal"
               >
                 {SLIDES[active].description}
               </motion.p>
@@ -197,7 +209,7 @@ export default function VideoHero() {
                 </a>
                 <a
                   href={SLIDES[active].ctaSecondary.href}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white/75 hover:text-white hover:border-white/35 text-sm font-medium rounded-xl transition-all duration-200"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/30 text-white/90 hover:text-white hover:border-white/50 text-sm font-medium rounded-xl transition-all duration-200"
                 >
                   {SLIDES[active].ctaSecondary.label}
                 </a>
@@ -243,7 +255,7 @@ export default function VideoHero() {
                 {value}
               </p>
               <div className="h-[2px] w-6 bg-tvblue mb-2 transition-all duration-300 group-hover:w-10" />
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60">{label}</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">{label}</p>
             </motion.div>
           ))}
         </div>
