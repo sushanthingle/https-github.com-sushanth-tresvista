@@ -75,8 +75,8 @@ function OrbitalCircle({
     <svg viewBox="0 0 300 300" className="w-full max-w-[300px]" style={{ overflow: 'visible' }}>
       <defs>
         <radialGradient id={`dg-${gid}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor={pillar.color} stopOpacity="0.12"/>
-          <stop offset="100%" stopColor="#EEF4FF"       stopOpacity="1"/>
+          <stop offset="0%"   stopColor={pillar.color} stopOpacity="0.22"/>
+          <stop offset="100%" stopColor="#E6F0FF"       stopOpacity="1"/>
         </radialGradient>
         <radialGradient id={`ig-${gid}`} cx="50%" cy="50%" r="50%">
           <stop offset="0%"   stopColor={pillar.color} stopOpacity="0.18"/>
@@ -286,7 +286,7 @@ function BannerSlide({
   const orgRgb = hex2rgb('#EF8014')
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px_1fr] gap-5 items-center">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px_1fr] gap-5 items-center">
 
       {/* TresVista panel */}
       <div
@@ -327,7 +327,14 @@ function BannerSlide({
 
       {/* orbital diagram */}
       <div className="flex items-center justify-center py-4 lg:py-0">
-        <OrbitalCircle pillar={pillar} hoveredPair={hoveredPair}/>
+        <div className="w-full max-w-[360px] rounded-2xl p-4"
+          style={{
+            background: 'linear-gradient(135deg, #EEF4FF 0%, #F8FBFF 100%)',
+            boxShadow: '0 8px 40px rgba(27,79,190,0.10), 0 2px 12px rgba(7,18,43,0.06)',
+            border: '1px solid rgba(27,79,190,0.10)',
+          }}>
+          <OrbitalCircle pillar={pillar} hoveredPair={hoveredPair}/>
+        </div>
       </div>
 
       {/* Descrial panel */}

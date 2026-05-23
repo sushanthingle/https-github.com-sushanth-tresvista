@@ -105,7 +105,7 @@ export default function WhoWeWorkWith() {
                 animate={headerInView ? { y: 0 } : {}}
                 transition={{ delay: 0.08, duration: 0.95, ease: [0.76, 0, 0.24, 1] }}
               >
-                <h2 className="text-[clamp(2.8rem,5.5vw,5.5rem)] font-black text-navy leading-[0.97] tracking-tight">
+                <h2 className="text-[clamp(2.8rem,5.5vw,5.5rem)] font-bold text-navy leading-[0.97] tracking-tight">
                   Who We{' '}
                   <span className="gradient-text">Work With</span>
                 </h2>

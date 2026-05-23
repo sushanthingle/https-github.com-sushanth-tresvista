@@ -113,7 +113,7 @@ export default function VideoHero() {
       <div className="absolute inset-0 pointer-events-none"
         style={{ background: 'linear-gradient(to right, rgba(2,8,17,0.65) 0%, rgba(2,8,17,0.15) 60%, transparent 100%)' }}
       />
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+      {/* no bottom gradient — stats must remain clearly visible */}
 
       {/* ── content ── */}
       <motion.div
@@ -235,7 +235,7 @@ export default function VideoHero() {
         </div>
 
         {/* ── stats strip — in the first fold ── */}
-        <div className="border-t border-white/10 pt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 lg:gap-10">
+        <div className="border-t border-white/15 pt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 lg:gap-10">
           {STATS.map(({ value, label }, i) => (
             <motion.div
               key={label}
@@ -248,7 +248,7 @@ export default function VideoHero() {
                 {value}
               </p>
               <div className="h-[2px] w-6 bg-tvblue mb-2 transition-all duration-300 group-hover:w-10" />
-              <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-white/38">{label}</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60">{label}</p>
             </motion.div>
           ))}
         </div>

@@ -47,11 +47,13 @@ export default function Contact() {
             <span className="text-tvblue text-xs font-bold tracking-[0.14em] uppercase">Get In Touch</span>
             <span className="w-8 h-[2px] bg-tvblue block" />
           </div>
-          <h2 className="text-[clamp(2rem,4vw,3rem)] font-extrabold text-navy leading-[1.1] tracking-tight mb-4">
-            A conversation is the first step.{' '}
-            <span className="gradient-text">Clarity</span> is the first outcome.
+          <h2 className="text-[clamp(2.4rem,5vw,4rem)] font-bold text-navy leading-[1.06] tracking-tight mb-4">
+            Start the{' '}
+            <span className="gradient-text">Conversation.</span>
           </h2>
-          <p className="text-slate text-lg max-w-[520px] mx-auto">Start the Conversation</p>
+          <p className="text-navy/50 text-lg max-w-[480px] mx-auto leading-relaxed">
+            A conversation is the first step. Clarity is the first outcome.
+          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-[400px_1fr] gap-12 lg:gap-20 items-start">
