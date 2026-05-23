@@ -100,10 +100,10 @@ export default function WhoWeAre() {
             {/* image container */}
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-[5/4]"
               style={{ boxShadow: '0 24px 80px rgba(7,18,43,0.10)' }}>
-              {/* placeholder: corporate office / people — replace with your own image */}
+              {/* corporate office building — replace with your own image */}
               <img
-                src="https://picsum.photos/seed/tresvista-office/960/640"
-                alt="TresVista office"
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=960&q=80"
+                alt="Corporate headquarters"
                 className="absolute inset-0 w-full h-full object-cover"
               />
 

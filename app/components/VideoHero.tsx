@@ -3,8 +3,6 @@ import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
-const YT_ID = 'Hgg7M3kSqyE'
-
 const SLIDES = [
   {
     id: 0,
@@ -90,22 +88,19 @@ export default function VideoHero() {
         className="absolute inset-0 origin-center pointer-events-none"
         style={{ scale: videoScale }}
       >
-        <div
-          className="absolute top-1/2 left-1/2"
-          style={{
-            transform: 'translate(-50%, -50%)',
-            width: 'max(177.78vh, 100vw)',
-            height: 'max(100vh, 56.25vw)',
-          }}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ pointerEvents: 'none' }}
         >
-          <iframe
-            src={`https://www.youtube.com/embed/${YT_ID}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&playlist=${YT_ID}`}
-            allow="autoplay; encrypted-media"
-            title="Hero background"
-            className="w-full h-full border-0"
-            style={{ pointerEvents: 'none' }}
+          <source
+            src="https://videos.pexels.com/video-files/3182812/3182812-hd_1920_1080_30fps.mp4"
+            type="video/mp4"
           />
-        </div>
+        </video>
       </motion.div>
 
       {/* ── overlays ── */}
