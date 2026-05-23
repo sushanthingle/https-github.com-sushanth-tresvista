@@ -3,17 +3,15 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { Cpu, Users, Globe2, ChevronLeft, ChevronRight } from 'lucide-react'
 
-/* ─── helpers ──────────────────────────────────────────────────── */
 function hex2rgb(h: string) {
   return `${parseInt(h.slice(1,3),16)},${parseInt(h.slice(3,5),16)},${parseInt(h.slice(5,7),16)}`
 }
 
-/* ─── data ─────────────────────────────────────────────────────── */
 const PILLARS = [
   {
-    id: 0, num: '01', label: 'Technology Transformation', icon: Cpu, color: '#1B4FBE',
-    tvTitle: 'Technology Transformation',
-    tvDesc: 'The answers to your biggest questions are in your data. We build the bridge to find them.',
+    id: 0, num: '01', label: 'Technological Transformation', icon: Cpu, color: '#1B4FBE',
+    tvTitle: 'Technological Transformation',
+    tvDesc: 'Master data management, business intelligence, custom technology infrastructure, and workflow automation — built around how you operate.',
     dsTitle: 'Natural Language Interface',
     dsDesc: 'Query your enterprise data in plain English and get structured, accurate answers instantly.',
     pairs: [
@@ -25,7 +23,7 @@ const PILLARS = [
   {
     id: 1, num: '02', label: 'Human-in-Command', icon: Users, color: '#EF8014',
     tvTitle: 'Human-in-Command',
-    tvDesc: 'Our experts on the front line, managing your data, running your workflows, and ensuring quality of every result.',
+    tvDesc: 'AI outputs are only as good as the human intelligence behind them. Our domain experts are embedded in your workflows — not just advising, but executing.',
     dsTitle: 'Agentic Workflow Orchestration',
     dsDesc: 'Multi-agent AI systems that execute complex workflows with human approval at every critical gate.',
     pairs: [
@@ -35,24 +33,22 @@ const PILLARS = [
     ],
   },
   {
-    id: 2, num: '03', label: 'Operational Excellence', icon: Globe2, color: '#2E78E8',
+    id: 2, num: '03', label: 'Operational Excellence (ODEx)', icon: Globe2, color: '#2E78E8',
     tvTitle: 'Operational Excellence (ODEx)',
-    tvDesc: 'Deploy the most advanced AI with the confidence of enterprise-grade validation.',
+    tvDesc: 'Continuous evaluation of AI models, vendors, and tools — so your AI stack evolves with the market, not behind it.',
     dsTitle: 'Unified Data Layer',
     dsDesc: 'A single semantic layer connecting all your existing systems — no rip-and-replace required.',
     pairs: [
-      { tv: 'Continuous research and evaluation of AI vendors and platforms', ds: 'Connects to 200+ data sources out of the box'         },
-      { tv: 'Rigorous testing & enterprise-grade validation',                 ds: 'Unified schema across all business domains'           },
-      { tv: 'Curated AI tool stack for client workflows',                    ds: 'Real-time sync with no-code connectors'               },
+      { tv: 'Continuous research and evaluation of AI vendors and platforms', ds: 'Connects to 200+ data sources out of the box'  },
+      { tv: 'Rigorous testing & enterprise-grade validation',                 ds: 'Unified schema across all business domains'    },
+      { tv: 'Curated AI tool stack for client workflows',                    ds: 'Real-time sync with no-code connectors'        },
     ],
   },
 ]
 
-/* pair badge colors — consistent across all pillar slides */
 const PAIR_COLORS = ['#4A9BF5', '#EF8014', '#A78BFA']
 const SLIDE_MS    = 6500
 
-/* ─── scan border ──────────────────────────────────────────────── */
 function ScanBorder({ color, reverse = false }: { color: string; reverse?: boolean }) {
   return (
     <motion.div
@@ -64,7 +60,6 @@ function ScanBorder({ color, reverse = false }: { color: string; reverse?: boole
   )
 }
 
-/* ─── orbital connection circle ────────────────────────────────── */
 function OrbitalCircle({
   pillar, hoveredPair,
 }: {
@@ -72,7 +67,6 @@ function OrbitalCircle({
   hoveredPair: number | null
 }) {
   const cx = 150, cy = 150, R = 86
-  /* three node y-positions evenly spaced inside the disc */
   const nodeYs = [110, 150, 190]
   const rgb    = hex2rgb(pillar.color)
   const gid    = `eio${pillar.id}`
@@ -81,11 +75,11 @@ function OrbitalCircle({
     <svg viewBox="0 0 300 300" className="w-full max-w-[300px]" style={{ overflow: 'visible' }}>
       <defs>
         <radialGradient id={`dg-${gid}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor={pillar.color} stopOpacity="0.28"/>
-          <stop offset="100%" stopColor="#030B1A"       stopOpacity="0.97"/>
+          <stop offset="0%"   stopColor={pillar.color} stopOpacity="0.12"/>
+          <stop offset="100%" stopColor="#EEF4FF"       stopOpacity="1"/>
         </radialGradient>
         <radialGradient id={`ig-${gid}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor={pillar.color} stopOpacity="0.32"/>
+          <stop offset="0%"   stopColor={pillar.color} stopOpacity="0.18"/>
           <stop offset="100%" stopColor={pillar.color} stopOpacity="0"/>
         </radialGradient>
         <filter id={`gl-${gid}`}>
@@ -98,16 +92,16 @@ function OrbitalCircle({
         </filter>
       </defs>
 
-      {/* ── outer dashed orbit ── */}
+      {/* outer dashed orbit */}
       <motion.circle
         cx={cx} cy={cy} r={138}
-        fill="none" stroke={`rgba(${rgb},0.14)`} strokeWidth="1" strokeDasharray="4 10"
+        fill="none" stroke={`rgba(${rgb},0.16)`} strokeWidth="1" strokeDasharray="4 10"
         animate={{ rotate: 360 }}
         transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
         style={{ originX: `${cx}px`, originY: `${cy}px` }}
       />
 
-      {/* ── accent arcs ── */}
+      {/* accent arcs */}
       <circle cx={cx} cy={cy} r={117}
         fill="none" stroke={`${pillar.color}C0`} strokeWidth="4" strokeLinecap="round"
         strokeDasharray={`${Math.PI*117*0.40} ${Math.PI*117*1.60}`}
@@ -117,7 +111,7 @@ function OrbitalCircle({
           from={`0 ${cx} ${cy}`} to={`360 ${cx} ${cy}`} dur="22s" repeatCount="indefinite"/>
       </circle>
       <circle cx={cx} cy={cy} r={117}
-        fill="none" stroke="rgba(46,120,232,0.55)" strokeWidth="3.5" strokeLinecap="round"
+        fill="none" stroke="rgba(46,120,232,0.50)" strokeWidth="3.5" strokeLinecap="round"
         strokeDasharray={`${Math.PI*117*0.24} ${Math.PI*117*1.76}`}
         filter={`url(#gl-${gid})`}
       >
@@ -125,30 +119,30 @@ function OrbitalCircle({
           from={`180 ${cx} ${cy}`} to={`540 ${cx} ${cy}`} dur="18s" repeatCount="indefinite"/>
       </circle>
 
-      {/* ── main disc ── */}
+      {/* main disc */}
       <circle cx={cx} cy={cy} r={R}
-        fill={`url(#dg-${gid})`} stroke={`rgba(${rgb},0.30)`} strokeWidth="1.5"/>
+        fill={`url(#dg-${gid})`} stroke={`rgba(${rgb},0.25)`} strokeWidth="1.5"/>
       <motion.circle cx={cx} cy={cy} r={R}
         fill={`url(#ig-${gid})`}
         animate={{ opacity: [0.4,1,0.4] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* ── horizontal dividers between rows ── */}
+      {/* horizontal dividers */}
       {[0,1].map(i => (
         <line key={i}
           x1={cx-R*0.82} y1={(nodeYs[i]+nodeYs[i+1])/2}
           x2={cx+R*0.82} y2={(nodeYs[i]+nodeYs[i+1])/2}
-          stroke="rgba(255,255,255,0.07)" strokeWidth="1"
+          stroke="rgba(7,18,43,0.07)" strokeWidth="1"
         />
       ))}
 
-      {/* ── label above disc ── */}
+      {/* EIO label */}
       <text x={cx} y={cy-R-12} textAnchor="middle"
-        fill="rgba(255,255,255,0.22)" fontSize="8" fontFamily="Inter,sans-serif"
+        fill="rgba(7,18,43,0.28)" fontSize="8" fontFamily="Inter,sans-serif"
         fontWeight="700" letterSpacing="0.18em">EIO</text>
 
-      {/* ── connection nodes with stubs ── */}
+      {/* connection nodes */}
       {nodeYs.map((ny, i) => {
         const pc    = PAIR_COLORS[i]
         const pRgb  = hex2rgb(pc)
@@ -157,37 +151,30 @@ function OrbitalCircle({
 
         return (
           <g key={i}>
-            {/* left stub — spans from SVG left edge to node */}
             <line
               x1={16} y1={ny} x2={136} y2={ny}
               stroke={pc}
               strokeWidth={isAct ? 1.8 : 0.8}
               strokeDasharray={isAct ? 'none' : '3 6'}
-              opacity={isAct ? 0.90 : (isDim ? 0.08 : 0.25)}
+              opacity={isAct ? 0.90 : (isDim ? 0.08 : 0.30)}
               style={{ transition: 'all 0.28s ease' }}
             />
-            {/* left terminal dot */}
             <circle cx={16} cy={ny} r={isAct ? 4 : 2.5}
-              fill={isAct ? pc : `rgba(${pRgb},${isDim?'0.15':'0.40'})`}
+              fill={isAct ? pc : `rgba(${pRgb},${isDim?'0.15':'0.45'})`}
               style={{ transition: 'all 0.25s ease' }}
             />
-
-            {/* right stub */}
             <line
               x1={164} y1={ny} x2={284} y2={ny}
               stroke={pc}
               strokeWidth={isAct ? 1.8 : 0.8}
               strokeDasharray={isAct ? 'none' : '3 6'}
-              opacity={isAct ? 0.90 : (isDim ? 0.08 : 0.25)}
+              opacity={isAct ? 0.90 : (isDim ? 0.08 : 0.30)}
               style={{ transition: 'all 0.28s ease' }}
             />
-            {/* right terminal dot */}
             <circle cx={284} cy={ny} r={isAct ? 4 : 2.5}
-              fill={isAct ? pc : `rgba(${pRgb},${isDim?'0.15':'0.40'})`}
+              fill={isAct ? pc : `rgba(${pRgb},${isDim?'0.15':'0.45'})`}
               style={{ transition: 'all 0.25s ease' }}
             />
-
-            {/* animated flow dot on stubs when active */}
             {isAct && (
               <>
                 <motion.circle cy={ny} r={3} fill={pc} filter={`url(#gl-${gid})`}
@@ -204,29 +191,23 @@ function OrbitalCircle({
                 />
               </>
             )}
-
-            {/* node halo when active */}
             {isAct && (
               <circle cx={cx} cy={ny} r={24}
                 fill={pc} fillOpacity="0.10" filter={`url(#sg-${gid})`}
               />
             )}
-
-            {/* node circle */}
             <circle
               cx={cx} cy={ny}
               r={isAct ? 15 : 12}
-              fill={isAct ? pc : (isDim ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.08)')}
-              stroke={isAct ? pc : `rgba(${pRgb},0.35)`}
+              fill={isAct ? pc : (isDim ? 'rgba(7,18,43,0.03)' : 'rgba(7,18,43,0.05)')}
+              stroke={isAct ? pc : `rgba(${pRgb},0.40)`}
               strokeWidth="1.5"
               filter={isAct ? `url(#gl-${gid})` : undefined}
               style={{ transition: 'r 0.22s,fill 0.22s,stroke 0.22s' }}
             />
-
-            {/* node number */}
             <text x={cx} y={ny+4} textAnchor="middle"
               fontSize="10.5" fontWeight="700" fontFamily="Inter,system-ui,sans-serif"
-              fill={isAct ? '#ffffff' : `rgba(${pRgb},${isDim?'0.25':'0.72'})`}
+              fill={isAct ? '#ffffff' : `rgba(${pRgb},${isDim?'0.30':'0.75'})`}
               style={{ transition: 'fill 0.22s' }}
             >
               {i+1}
@@ -235,9 +216,9 @@ function OrbitalCircle({
         )
       })}
 
-      {/* ── center pulse ── */}
+      {/* center pulse */}
       <motion.circle cx={cx} cy={cy} r={8}
-        fill={`rgba(${rgb},0.20)`}
+        fill={`rgba(${rgb},0.18)`}
         animate={{ r:[6,11,6], opacity:[0.3,0.7,0.3] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
         filter={`url(#sg-${gid})`}
@@ -247,7 +228,6 @@ function OrbitalCircle({
   )
 }
 
-/* ─── hoverable bullet item ────────────────────────────────────── */
 function BulletItem({
   text, idx, active, onEnter, onLeave, side,
 }: {
@@ -264,18 +244,18 @@ function BulletItem({
       transition={{ duration: 0.2 }}
       className="flex items-start gap-3 p-3 rounded-xl cursor-default"
       style={{
-        background:  active ? `rgba(${rgb},0.13)` : 'rgba(255,255,255,0.02)',
-        border:      `1px solid ${active ? `rgba(${rgb},0.38)` : 'rgba(255,255,255,0.06)'}`,
+        background:  active ? `rgba(${rgb},0.10)` : 'rgba(7,18,43,0.03)',
+        border:      `1px solid ${active ? `rgba(${rgb},0.35)` : 'rgba(7,18,43,0.08)'}`,
         transition:  'background 0.22s,border-color 0.22s',
       }}
     >
       <span
-        className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0 mt-0.5"
+        className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5"
         style={{
-          background:  active ? pc : `rgba(${rgb},0.22)`,
-          color:       active ? '#fff' : pc,
-          boxShadow:   active ? `0 0 14px rgba(${rgb},0.50)` : 'none',
-          transition:  'all 0.22s',
+          background: active ? pc : `rgba(${rgb},0.18)`,
+          color:      active ? '#fff' : pc,
+          boxShadow:  active ? `0 0 14px rgba(${rgb},0.40)` : 'none',
+          transition: 'all 0.22s',
         }}
       >
         {idx+1}
@@ -283,9 +263,9 @@ function BulletItem({
       <span
         className="text-sm leading-snug"
         style={{
-          color:      active ? 'rgba(255,255,255,0.92)' : 'rgba(180,205,255,0.58)',
+          color:      active ? 'rgba(7,18,43,0.90)' : 'rgba(7,18,43,0.55)',
           fontWeight: active ? 500 : 400,
-          transition: 'color 0.22s,font-weight 0.22s',
+          transition: 'color 0.22s',
         }}
       >
         {text}
@@ -294,7 +274,6 @@ function BulletItem({
   )
 }
 
-/* ─── one banner slide ─────────────────────────────────────────── */
 function BannerSlide({
   pillar, hoveredPair, onHover, onLeave,
 }: {
@@ -309,17 +288,16 @@ function BannerSlide({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px_1fr] gap-5 items-center">
 
-      {/* ── TresVista panel ── */}
+      {/* TresVista panel */}
       <div
         className="rounded-2xl p-6 lg:p-8 relative overflow-hidden h-full"
         style={{
-          background:    'rgba(8,18,50,0.88)',
-          border:        `1px solid rgba(${rgb},0.22)`,
-          backdropFilter:'blur(16px)',
+          background: '#FFFFFF',
+          border:     `1px solid rgba(${rgb},0.18)`,
+          boxShadow:  '0 2px 24px rgba(7,18,43,0.07)',
         }}
       >
         <ScanBorder color={pillar.color}/>
-        {/* logo badge */}
         <div className="flex items-center gap-2 mb-5">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <polygon points="0,18 9,0 18,18" fill="#1B4FBE" clipPath={`url(#tvL${pillar.id})`}/>
@@ -329,13 +307,13 @@ function BannerSlide({
               <clipPath id={`tvR${pillar.id}`}><rect x="9" y="0" width="9" height="18"/></clipPath>
             </defs>
           </svg>
-          <span className="text-[11px] font-bold tracking-[0.14em] uppercase" style={{ color:'#7BA8F8' }}>TresVista</span>
+          <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-tvblue">TresVista</span>
           <span className="ml-auto text-[9px] font-bold tracking-widest uppercase"
             style={{ color:`rgba(${rgb},0.45)` }}>The Talent</span>
         </div>
 
-        <h3 className="text-white font-extrabold text-lg leading-snug mb-2">{pillar.tvTitle}</h3>
-        <p className="text-sm leading-relaxed mb-6" style={{ color:'rgba(180,205,255,0.60)' }}>{pillar.tvDesc}</p>
+        <h3 className="text-navy font-bold text-lg leading-snug mb-2">{pillar.tvTitle}</h3>
+        <p className="text-sm leading-relaxed mb-6 text-navy/55">{pillar.tvDesc}</p>
 
         <div className="space-y-2">
           {pillar.pairs.map((p,i) => (
@@ -344,33 +322,33 @@ function BannerSlide({
           ))}
         </div>
 
-        <div className="h-px mt-6" style={{ background:`linear-gradient(to right,rgba(${rgb},0.30),transparent)` }}/>
+        <div className="h-px mt-6" style={{ background:`linear-gradient(to right,rgba(${rgb},0.25),transparent)` }}/>
       </div>
 
-      {/* ── orbital diagram ── */}
+      {/* orbital diagram */}
       <div className="flex items-center justify-center py-4 lg:py-0">
         <OrbitalCircle pillar={pillar} hoveredPair={hoveredPair}/>
       </div>
 
-      {/* ── Descrial panel ── */}
+      {/* Descrial panel */}
       <div
         className="rounded-2xl p-6 lg:p-8 relative overflow-hidden h-full"
         style={{
-          background:    'rgba(8,18,50,0.88)',
-          border:        `1px solid rgba(${orgRgb},0.22)`,
-          backdropFilter:'blur(16px)',
+          background: '#FFFFFF',
+          border:     `1px solid rgba(${orgRgb},0.18)`,
+          boxShadow:  '0 2px 24px rgba(7,18,43,0.07)',
         }}
       >
         <ScanBorder color="#EF8014" reverse/>
         <div className="flex items-center gap-2 mb-5">
-          <span className="text-xl font-black leading-none" style={{ color:'#EF8014' }}>D</span>
-          <span className="text-[11px] font-bold tracking-[0.14em] uppercase" style={{ color:'#FAA34A' }}>Descrial</span>
+          <span className="text-xl font-bold leading-none text-tvorange">D</span>
+          <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-tvorange">Descrial</span>
           <span className="ml-auto text-[9px] font-bold tracking-widest uppercase"
             style={{ color:'rgba(239,128,20,0.45)' }}>The Platform</span>
         </div>
 
-        <h3 className="text-white font-extrabold text-lg leading-snug mb-2">{pillar.dsTitle}</h3>
-        <p className="text-sm leading-relaxed mb-6" style={{ color:'rgba(255,210,160,0.60)' }}>{pillar.dsDesc}</p>
+        <h3 className="text-navy font-bold text-lg leading-snug mb-2">{pillar.dsTitle}</h3>
+        <p className="text-sm leading-relaxed mb-6 text-navy/55">{pillar.dsDesc}</p>
 
         <div className="space-y-2">
           {pillar.pairs.map((p,i) => (
@@ -379,13 +357,12 @@ function BannerSlide({
           ))}
         </div>
 
-        <div className="h-px mt-6" style={{ background:'linear-gradient(to left,rgba(239,128,20,0.30),transparent)' }}/>
+        <div className="h-px mt-6" style={{ background:'linear-gradient(to left,rgba(239,128,20,0.25),transparent)' }}/>
       </div>
     </div>
   )
 }
 
-/* ─── main section ─────────────────────────────────────────────── */
 export default function EIOSection() {
   const [activePillar, setActivePillar] = useState(0)
   const [hoveredPair,  setHoveredPair]  = useState<number|null>(null)
@@ -397,7 +374,6 @@ export default function EIOSection() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const pillar = PILLARS[activePillar]
 
-  /* auto-advance with per-tab progress bar */
   useEffect(() => {
     if (paused) return
     setProgress(0)
@@ -423,41 +399,32 @@ export default function EIOSection() {
   }
 
   const slideVariants = {
-    enter:  (d:number) => ({ opacity:0, x: d*90, scale:0.97, filter:'blur(7px)' }),
+    enter:  (d:number) => ({ opacity:0, x: d*90, scale:0.97, filter:'blur(6px)' }),
     center: { opacity:1, x:0, scale:1, filter:'blur(0px)' },
-    exit:   (d:number) => ({ opacity:0, x:-d*65, scale:0.98, filter:'blur(4px)' }),
+    exit:   (d:number) => ({ opacity:0, x:-d*65, scale:0.98, filter:'blur(3px)' }),
   }
 
   return (
     <section
       id="eio"
       ref={ref}
-      className="relative bg-[#050E20] overflow-hidden py-28 lg:py-36"
+      className="relative bg-white overflow-hidden py-28 lg:py-36"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
+      {/* very subtle top border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-navy/6" />
 
-      {/* grid overlay */}
-      <div className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:'linear-gradient(rgba(100,150,255,0.6) 1px,transparent 1px),linear-gradient(90deg,rgba(100,150,255,0.6) 1px,transparent 1px)',
-          backgroundSize:'64px 64px',
-        }}
-      />
-
-      {/* ambient glow follows pillar color */}
+      {/* ambient glow — light version */}
       <motion.div
         className="absolute -top-40 left-1/2 -translate-x-1/2 w-[960px] h-[640px] rounded-full pointer-events-none"
-        animate={{ background:`radial-gradient(ellipse, ${pillar.color}16 0%, transparent 65%)` }}
+        animate={{ background:`radial-gradient(ellipse, ${pillar.color}0A 0%, transparent 65%)` }}
         transition={{ duration: 0.9 }}
-      />
-      <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background:'radial-gradient(circle, rgba(239,128,20,0.06) 0%, transparent 65%)' }}
       />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-16">
 
-        {/* ── section header ── */}
+        {/* section header */}
         <motion.div
           initial={{ opacity:0, y:36 }}
           animate={inView ? { opacity:1, y:0 } : {}}
@@ -465,35 +432,35 @@ export default function EIOSection() {
           className="text-center mb-14"
         >
           <div className="flex items-center justify-center gap-3 mb-5">
-            <motion.span className="h-[2px] bg-tvorange block"
+            <motion.span className="h-[2px] bg-tvblue/50 block"
               initial={{ width:0 }} animate={inView ? { width:32 } : {}}
               transition={{ delay:0.3, duration:0.5 }}
             />
-            <span className="text-tvorange text-xs font-bold tracking-[0.14em] uppercase">Our Integrated Model</span>
-            <motion.span className="h-[2px] bg-tvorange block"
+            <span className="text-tvblue text-xs font-bold tracking-[0.14em] uppercase">Our Integrated Model</span>
+            <motion.span className="h-[2px] bg-tvblue/50 block"
               initial={{ width:0 }} animate={inView ? { width:32 } : {}}
               transition={{ delay:0.3, duration:0.5 }}
             />
           </div>
-          <h2 className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold text-white leading-[1.1] tracking-tight mb-5">
+          <h2 className="text-[clamp(2rem,4vw,3.2rem)] font-bold text-navy leading-[1.1] tracking-tight mb-5">
             Enterprise Intelligence{' '}
             <span className="gradient-text">Orchestration</span>
           </h2>
-          <p className="text-[rgba(180,200,255,0.75)] text-lg max-w-[640px] mx-auto leading-relaxed">
+          <p className="text-navy/55 text-lg max-w-[640px] mx-auto leading-relaxed">
             TresVista and Descrial are two components of one integrated model. Our experts use Descrial to orchestrate data, workflows, and AI — connecting insight to execution.
           </p>
         </motion.div>
 
-        {/* ── pillar tab selector ── */}
+        {/* pillar tab selector */}
         <motion.div
           initial={{ opacity:0, y:18 }}
           animate={inView ? { opacity:1, y:0 } : {}}
           transition={{ delay:0.2, duration:0.6 }}
           className="flex justify-center mb-10"
         >
-          <div className="inline-flex bg-[rgba(10,20,55,0.88)] border border-white/10 rounded-2xl p-1.5 gap-1.5 backdrop-blur">
+          <div className="inline-flex bg-surface border border-navy/8 rounded-2xl p-1.5 gap-1.5">
             {PILLARS.map((p,i) => {
-              const Icon = p.icon
+              const Icon  = p.icon
               const isAct = activePillar === i
               return (
                 <motion.button
@@ -501,24 +468,23 @@ export default function EIOSection() {
                   onClick={() => goTo(i)}
                   whileTap={{ scale:0.95 }}
                   className="relative flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-semibold cursor-pointer overflow-hidden"
-                  style={{ color: isAct ? '#fff' : 'rgba(180,200,255,0.48)' }}
+                  style={{ color: isAct ? '#fff' : 'rgba(7,18,43,0.48)' }}
                 >
                   {isAct && (
                     <motion.div
                       layoutId="eioTab"
                       className="absolute inset-0 rounded-xl"
-                      style={{ background:`${p.color}25`, border:`1px solid ${p.color}50` }}
+                      style={{ background:`${p.color}`, border:`1px solid ${p.color}` }}
                       transition={{ type:'spring', stiffness:380, damping:36 }}
                     />
                   )}
                   <Icon size={12} className="relative z-10 flex-shrink-0"/>
                   <span className="relative z-10 hidden sm:inline whitespace-nowrap">{p.label}</span>
-                  <span className="relative z-10 font-black text-[9px] opacity-35">{p.num}</span>
-                  {/* progress underline */}
+                  <span className="relative z-10 font-bold text-[9px] opacity-40">{p.num}</span>
                   {isAct && (
                     <div
-                      className="absolute bottom-0 left-0 h-[2px] rounded-full z-10"
-                      style={{ background:p.color, width:`${progress}%`, transition:'width 0.05s linear' }}
+                      className="absolute bottom-0 left-0 h-[2px] rounded-full z-10 bg-white/40"
+                      style={{ width:`${progress}%`, transition:'width 0.05s linear' }}
                     />
                   )}
                 </motion.button>
@@ -527,7 +493,7 @@ export default function EIOSection() {
           </div>
         </motion.div>
 
-        {/* ── main slider ── */}
+        {/* main slider */}
         <div className="relative">
           <AnimatePresence custom={dir} mode="wait">
             <motion.div
@@ -551,19 +517,19 @@ export default function EIOSection() {
           {/* prev / next arrows */}
           <button
             onClick={() => goTo((activePillar-1+PILLARS.length) % PILLARS.length)}
-            className="absolute -left-4 lg:-left-10 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/12 border border-white/10 hover:border-white/20 transition-all duration-200"
+            className="absolute -left-4 lg:-left-10 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center bg-navy/4 hover:bg-navy/8 border border-navy/10 hover:border-navy/20 transition-all duration-200"
           >
-            <ChevronLeft size={16} style={{ color:'rgba(255,255,255,0.65)' }}/>
+            <ChevronLeft size={16} className="text-navy/55"/>
           </button>
           <button
             onClick={() => goTo((activePillar+1) % PILLARS.length)}
-            className="absolute -right-4 lg:-right-10 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/12 border border-white/10 hover:border-white/20 transition-all duration-200"
+            className="absolute -right-4 lg:-right-10 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center bg-navy/4 hover:bg-navy/8 border border-navy/10 hover:border-navy/20 transition-all duration-200"
           >
-            <ChevronRight size={16} style={{ color:'rgba(255,255,255,0.65)' }}/>
+            <ChevronRight size={16} className="text-navy/55"/>
           </button>
         </div>
 
-        {/* ── bottom: pillar label + dot indicators ── */}
+        {/* bottom: label + dot indicators */}
         <div className="flex flex-col items-center gap-4 mt-10">
           <AnimatePresence mode="wait">
             <motion.p
@@ -573,7 +539,7 @@ export default function EIOSection() {
               exit={{ opacity:0, y:-8 }}
               transition={{ duration:0.28 }}
               className="text-sm font-semibold tracking-wide"
-              style={{ color:`rgba(${hex2rgb(pillar.color)},0.70)` }}
+              style={{ color:`rgba(${hex2rgb(pillar.color)},0.80)` }}
             >
               {pillar.num} — {pillar.label}
             </motion.p>
@@ -587,14 +553,14 @@ export default function EIOSection() {
                 className="h-[3px] rounded-full transition-all duration-350"
                 style={{
                   width:      activePillar===i ? 32 : 12,
-                  background: activePillar===i ? p.color : 'rgba(255,255,255,0.20)',
+                  background: activePillar===i ? p.color : 'rgba(7,18,43,0.15)',
                 }}
               />
             ))}
           </div>
 
-          <p className="text-[11px]" style={{ color:'rgba(150,175,255,0.30)' }}>
-            Hover any numbered item to illuminate its 1-to-1 connection through the diagram
+          <p className="text-[11px] text-navy/30">
+            Hover any numbered item to illuminate its connection through the diagram
           </p>
         </div>
 

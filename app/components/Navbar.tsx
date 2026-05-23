@@ -4,7 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Menu, X } from 'lucide-react'
 
 const navItems = [
-  { label: 'Our Solution', href: '#eio', dropdown: null },
+  { label: 'About Us',      href: '/au/',             dropdown: null },
+  { label: 'Our Solutions', href: '/our-solution/',    dropdown: null },
+  {
+    label: 'Who We Serve', href: '#who-we-work-with',
+    dropdown: ['Private Equity', 'Investment Banks', 'Corporates & Hedge Funds'],
+  },
   {
     label: 'Insights', href: '#',
     dropdown: ['TresVista Talk', 'TresVista Perspective', 'Case Studies'],
@@ -14,17 +19,16 @@ const navItems = [
     dropdown: ['Many Faces One TresVista', 'Explore Careers'],
   },
   {
-    label: 'Pressroom', href: '#',
+    label: 'Press Room', href: '#',
     dropdown: ['Press Releases', 'In The News', 'Sponsorships'],
   },
-  { label: 'About Us', href: '#who-we-are', dropdown: null },
   { label: 'Contact Us', href: '#contact', dropdown: null },
 ]
 
 export default function Navbar() {
-  const [scrolled,    setScrolled]    = useState(false)
+  const [scrolled,     setScrolled]     = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const [mobileOpen,  setMobileOpen]  = useState(false)
+  const [mobileOpen,   setMobileOpen]   = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32)
@@ -44,15 +48,14 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
-        {/* Logo — switches between white (transparent nav) and dark (scrolled nav) */}
-        <a href="#" className="flex items-center">
-          {/* White version: visible on dark/transparent navbar */}
+
+        {/* Logo */}
+        <a href="/" className="flex items-center">
           <img
             src="/logo-white.svg"
             alt="TresVista"
             className={`h-9 w-auto transition-opacity duration-300 ${scrolled ? 'opacity-0 absolute' : 'opacity-100'}`}
           />
-          {/* Dark version: visible on white scrolled navbar */}
           <img
             src="/logo-dark.svg"
             alt="TresVista"
@@ -61,7 +64,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <ul className="hidden lg:flex items-center gap-1">
+        <ul className="hidden lg:flex items-center gap-0.5">
           {navItems.map((item) => (
             <li
               key={item.label}
@@ -71,20 +74,21 @@ export default function Navbar() {
             >
               <a
                 href={item.href}
-                className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                className={`flex items-center gap-1 px-3.5 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 ${
                   scrolled
-                    ? 'text-navy/70 hover:text-navy hover:bg-surface'
+                    ? 'text-navy/65 hover:text-navy hover:bg-surface'
                     : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {item.label}
                 {item.dropdown && (
                   <ChevronDown
-                    size={14}
+                    size={13}
                     className={`transition-transform duration-200 ${openDropdown === item.label ? 'rotate-180' : ''}`}
                   />
                 )}
               </a>
+
               <AnimatePresence>
                 {item.dropdown && openDropdown === item.label && (
                   <motion.div
@@ -92,13 +96,13 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.97 }}
                     transition={{ duration: 0.18, ease: 'easeOut' }}
-                    className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-[0_8px_40px_rgba(7,18,43,0.14)] border border-navy/5 overflow-hidden"
+                    className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-[0_8px_40px_rgba(7,18,43,0.12)] border border-navy/5 overflow-hidden"
                   >
                     {item.dropdown.map((sub) => (
                       <a
                         key={sub}
                         href="#"
-                        className="block px-5 py-3 text-sm text-navy/70 hover:text-navy hover:bg-surface transition-colors duration-150 border-b border-navy/4 last:border-0"
+                        className="block px-5 py-3 text-sm text-navy/65 hover:text-navy hover:bg-surface transition-colors duration-150 border-b border-navy/4 last:border-0"
                       >
                         {sub}
                       </a>
@@ -111,12 +115,12 @@ export default function Navbar() {
         </ul>
 
         {/* CTA */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center">
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="px-5 py-2.5 bg-tvblue text-white text-sm font-semibold rounded-lg hover:bg-tvblue-light transition-colors duration-200 shadow-[0_4px_14px_rgba(27,79,190,0.35)]"
+            className="px-5 py-2.5 bg-tvblue text-white text-sm font-semibold rounded-lg hover:bg-tvblue-light transition-colors duration-200 shadow-[0_4px_14px_rgba(27,79,190,0.30)]"
           >
             Start the Conversation
           </motion.a>
@@ -147,7 +151,7 @@ export default function Navbar() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="px-3 py-3 text-sm font-medium text-navy/70 hover:text-navy hover:bg-surface rounded-lg transition-colors"
+                  className="px-3 py-3 text-sm font-medium text-navy/65 hover:text-navy hover:bg-surface rounded-lg transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
