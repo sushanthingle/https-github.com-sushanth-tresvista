@@ -1,6 +1,6 @@
 'use client'
 import { useRef, useState } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 
 const VALUE_PROPS = [
@@ -14,9 +14,25 @@ const VALUE_PROPS = [
 const SOURCE_OPTIONS = ['Referral', 'News and Content', 'Events and Conferences', 'Promotions', 'Others']
 const INQUIRY_TYPES  = ['Service Inquiry', 'Careers', 'General']
 
+const HEADLINE_LINES = ['START THE', 'CONVERSATION.']
+
 export default function ContactV2() {
-  const ref    = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const sectionRef = useRef<HTMLElement>(null)
+  const ref        = useRef(null)
+  const inView     = useInView(ref, { once: true, margin: '-80px' })
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+
+  const rawHeadlineY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%'])
+  const rawFormY     = useTransform(scrollYProgress, [0, 1], ['4%', '-4%'])
+  const rawLeftY     = useTransform(scrollYProgress, [0, 1], ['3%', '-3%'])
+
+  const headlineY = useSpring(rawHeadlineY, { stiffness: 55, damping: 18 })
+  const formY     = useSpring(rawFormY,     { stiffness: 50, damping: 17 })
+  const leftY     = useSpring(rawLeftY,     { stiffness: 50, damping: 17 })
 
   const [name,    setName]    = useState('')
   const [org,     setOrg]     = useState('')
@@ -42,7 +58,7 @@ export default function ContactV2() {
   return (
     <section
       id="contact"
-      ref={ref}
+      ref={sectionRef}
       style={{
         backgroundColor: '#e5e7eb',
         borderRadius: '64px 64px 0 0',
@@ -61,42 +77,53 @@ export default function ContactV2() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div ref={ref} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
 
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-16 lg:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
-          >
-            <div className="flex items-center gap-3 mb-5">
-              <span
-                className="text-[11px] font-bold tracking-[0.24em] uppercase"
-                style={{ color: '#000', fontFamily: 'var(--font-ibm-plex-mono, monospace)' }}
-              >
-                04
-              </span>
-              <span className="h-px w-8 bg-black/25 block" />
-              <span className="text-black/30 text-[11px] font-bold tracking-[0.18em] uppercase">Start the Conversation</span>
-            </div>
-            <h2
-              className="text-black"
-              style={{
-                fontFamily: 'var(--font-bebas-neue, sans-serif)',
-                fontSize: 'clamp(3rem, 6.5vw, 6.5rem)',
-                lineHeight: 0.90,
-                letterSpacing: '-0.025em',
-              }}
+          <motion.div style={{ y: headlineY }}>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+              className="flex items-center gap-3 mb-5"
             >
-              START THE<br />CONVERSATION.
-            </h2>
+              <span className="text-[11px] font-bold tracking-[0.24em] uppercase" style={{ color: '#000', fontFamily: 'var(--font-ibm-plex-mono, monospace)' }}>04</span>
+              <motion.span
+                className="h-px bg-black/25 block"
+                initial={{ width: 0 }}
+                animate={inView ? { width: 32 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              />
+              <span className="text-black/30 text-[11px] font-bold tracking-[0.18em] uppercase">Start the Conversation</span>
+            </motion.div>
+            {HEADLINE_LINES.map((line, i) => (
+              <div key={line} style={{ overflow: 'hidden' }}>
+                <motion.div
+                  initial={{ y: '110%' }}
+                  animate={inView ? { y: 0 } : {}}
+                  transition={{ duration: 0.9, delay: 0.08 + i * 0.14, ease: [0.76, 0, 0.24, 1] }}
+                >
+                  <span
+                    className="block text-black"
+                    style={{
+                      fontFamily: 'var(--font-bebas-neue, sans-serif)',
+                      fontSize: 'clamp(3rem, 6.5vw, 6.5rem)',
+                      lineHeight: 0.90,
+                      letterSpacing: '-0.025em',
+                    }}
+                  >
+                    {line}
+                  </span>
+                </motion.div>
+              </div>
+            ))}
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.18, duration: 0.7 }}
+            initial={{ opacity: 0, filter: 'blur(8px)', y: 20 }}
+            animate={inView ? { opacity: 1, filter: 'blur(0px)', y: 0 } : {}}
+            transition={{ delay: 0.35, duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
             className="text-[#444444] text-[13px] font-bold tracking-[0.16em] uppercase leading-relaxed max-w-[340px]"
           >
             A conversation is the first step. Clarity is the first outcome.
@@ -107,30 +134,46 @@ export default function ContactV2() {
 
           {/* Left: value props */}
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
+            style={{ y: leftY }}
             className="flex flex-col gap-10"
           >
             <div>
-              <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-black/30 mb-6">Why TresVista</p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="text-[11px] font-bold tracking-[0.22em] uppercase text-black/30 mb-6"
+              >
+                Why TresVista
+              </motion.p>
               <ul className="space-y-4">
                 {VALUE_PROPS.map((prop, i) => (
                   <motion.li
                     key={prop}
-                    initial={{ opacity: 0, x: -16 }}
+                    initial={{ opacity: 0, x: -20 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.28 + i * 0.07, duration: 0.5 }}
+                    transition={{ delay: 0.38 + i * 0.09, duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
                     className="flex items-start gap-4"
                   >
-                    <CheckCircle2 size={16} className="text-black/35 flex-shrink-0 mt-0.5" />
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={inView ? { scale: 1 } : {}}
+                      transition={{ delay: 0.42 + i * 0.09, duration: 0.4, type: 'spring', stiffness: 200 }}
+                    >
+                      <CheckCircle2 size={16} className="text-black/35 flex-shrink-0 mt-0.5" />
+                    </motion.div>
                     <span className="text-[#444444] text-sm leading-relaxed">{prop}</span>
                   </motion.li>
                 ))}
               </ul>
             </div>
 
-            <div className="border-t border-black/10 pt-8">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.85, duration: 0.55 }}
+              className="border-t border-black/10 pt-8"
+            >
               <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-black/25 mb-4">Direct Contact</p>
               <a
                 href="mailto:reachus@tresvista.com"
@@ -138,27 +181,34 @@ export default function ContactV2() {
               >
                 reachus@tresvista.com
               </a>
-            </div>
+            </motion.div>
           </motion.div>
 
-          {/* Form */}
+          {/* Form — spring slide-in from right */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.28, duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
+            style={{ y: formY, backgroundColor: '#ffffff' }}
+            initial={{ opacity: 0, x: 40, scale: 0.97 }}
+            animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
+            transition={{ delay: 0.35, duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
             className="rounded-[32px] p-8 lg:p-10"
-            style={{ backgroundColor: '#ffffff' }}
           >
             <AnimatePresence mode="wait">
               {sent ? (
                 <motion.div
                   key="success"
-                  initial={{ opacity: 0, scale: 0.96 }}
+                  initial={{ opacity: 0, scale: 0.94 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
                   className="min-h-[500px] flex flex-col items-center justify-center text-center gap-5"
                 >
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: '#d1ffca' }}>
+                  <motion.div
+                    className="w-14 h-14 rounded-full flex items-center justify-center"
+                    style={{ background: '#d1ffca' }}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 240, damping: 18, delay: 0.1 }}
+                  >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <motion.path
                         d="M5 12l5 5L19 7"
@@ -166,10 +216,10 @@ export default function ContactV2() {
                         strokeLinecap="round" strokeLinejoin="round"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
-                        transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+                        transition={{ duration: 0.55, delay: 0.2, ease: 'easeOut' }}
                       />
                     </svg>
-                  </div>
+                  </motion.div>
                   <h3 className="text-black text-xl font-bold">Message sent.</h3>
                   <p className="text-[#444444] text-sm leading-relaxed max-w-[260px]">
                     Our team will be in touch within one business day. We look forward to connecting.
