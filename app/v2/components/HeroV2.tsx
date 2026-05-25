@@ -1,7 +1,7 @@
 'use client'
 import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { ArrowRight, ArrowDown } from 'lucide-react'
+import { ArrowRight, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const SLIDES = [
   {
@@ -104,7 +104,7 @@ export default function HeroV2() {
             />
           ))}
           <circle cx={340} cy={340} r={18} fill="none" stroke="#07122B" strokeWidth="1.5" />
-          <circle cx={340} cy={340} r={6}  fill="#1B4FBE" />
+          <circle cx={340} cy={340} r={6}  fill="#00327B" />
         </svg>
       </motion.div>
 
@@ -161,9 +161,7 @@ export default function HeroV2() {
                       animate={{ y: 0 }}
                       transition={{ delay: 0.05 + li * 0.12, duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
                     >
-                      <span className={`block text-[clamp(2.8rem,7.5vw,8rem)] font-black leading-[0.90] tracking-tight ${
-                        li === 0 ? 'text-navy' : 'gradient-text'
-                      }`}>
+                      <span className="block text-[clamp(2.8rem,7.5vw,8rem)] font-black leading-[0.90] tracking-tight text-navy">
                         {line}{li < SLIDES[active].heading.split('. ').length - 1 && SLIDES[active].heading.includes('. ') ? '.' : ''}
                       </span>
                     </motion.div>
@@ -200,27 +198,45 @@ export default function HeroV2() {
           </AnimatePresence>
         </div>
 
-        {/* slide indicators */}
-        <div className="flex items-center gap-3 mb-10">
-          {SLIDES.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              aria-label={`Slide ${i + 1}`}
-              className="relative overflow-hidden rounded-full h-[3px] transition-all duration-300"
-              style={{ width: i === active ? 40 : 16, background: 'rgba(7,18,43,0.12)' }}
-            >
-              {i === active && (
-                <motion.div
-                  className="absolute inset-y-0 left-0 bg-tvblue"
-                  style={{ width: `${prog}%` }}
-                />
-              )}
-            </button>
-          ))}
-          <span className="text-[10px] font-bold tracking-[0.2em] text-navy/25 ml-2">
-            0{active + 1} / 0{SLIDES.length}
-          </span>
+        {/* slide indicators + nav arrows */}
+        <div className="flex items-center gap-4 mb-10">
+          <button
+            onClick={() => goTo((active - 1 + SLIDES.length) % SLIDES.length)}
+            aria-label="Previous slide"
+            className="w-9 h-9 rounded-full flex items-center justify-center border border-navy/15 text-navy/40 hover:border-navy/35 hover:text-navy transition-all duration-200 flex-shrink-0"
+          >
+            <ChevronLeft size={16} />
+          </button>
+
+          <div className="flex items-center gap-3">
+            {SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                aria-label={`Slide ${i + 1}`}
+                className="relative overflow-hidden rounded-full h-[3px] transition-all duration-300"
+                style={{ width: i === active ? 40 : 16, background: 'rgba(7,18,43,0.12)' }}
+              >
+                {i === active && (
+                  <motion.div
+                    className="absolute inset-y-0 left-0 bg-tvblue"
+                    style={{ width: `${prog}%` }}
+                  />
+                )}
+              </button>
+            ))}
+            <span className="text-[10px] font-bold tracking-[0.2em] text-navy/25 ml-1">
+              0{active + 1} / 0{SLIDES.length}
+            </span>
+          </div>
+
+          <button
+            onClick={() => goTo((active + 1) % SLIDES.length)}
+            aria-label="Next slide"
+            className="w-9 h-9 rounded-full flex items-center justify-center border border-navy/15 text-navy/40 hover:border-navy/35 hover:text-navy transition-all duration-200 flex-shrink-0"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
 
         {/* stats strip */}

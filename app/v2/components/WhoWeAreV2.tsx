@@ -49,7 +49,7 @@ export default function WhoWeAreV2() {
       />
       {/* ambient glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(27,79,190,0.14) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(ellipse, rgba(0,50,123,0.14) 0%, transparent 65%)' }}
       />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-16">
@@ -67,8 +67,7 @@ export default function WhoWeAreV2() {
               <span className="text-white/35 text-xs font-bold tracking-[0.18em] uppercase">Who We Are</span>
             </div>
             <h2 className="text-[clamp(2.4rem,5vw,4.8rem)] font-black text-white leading-[0.95] tracking-tight">
-              Who<br />
-              <span className="gradient-text">We Are.</span>
+              Who We Are.
             </h2>
           </motion.div>
 

@@ -10,7 +10,7 @@ const PILLARS = [
     tvTitle: 'Technological Transformation',
     tvDesc: 'The answers to your biggest questions are in your data. We build the bridge to find them.',
     dsTitle: 'Descrial Data Platform',
-    dsDesc: 'Orchestrate data, workflows, and AI — connecting insight to execution.',
+    dsDesc: 'Orchestrate data, workflows, and AI, connecting insight to execution.',
     pairs: [
       { tv: 'Master data model design and governance for AI deployment', ds: 'Unified data layer connecting all enterprise sources'  },
       { tv: 'Data engineering and custom data lake construction',        ds: 'AI-ready pipelines with automated quality assurance'   },
@@ -22,7 +22,7 @@ const PILLARS = [
     tvTitle: 'Human-in-Command',
     tvDesc: 'Our experts on the front line, managing your data, running your workflows, and ensuring the quality of every result.',
     dsTitle: 'Governed AI Workflows',
-    dsDesc: 'Every AI output validated and executed by embedded experts — no black box.',
+    dsDesc: 'Every AI output validated and executed by embedded experts, no black box.',
     pairs: [
       { tv: 'Investment & finance professionals executing across the value chain', ds: 'Multi-step AI workflows with human approval gates'       },
       { tv: 'Data migration and managed technology services',                     ds: 'Full audit trail and accountability at every handoff'    },
@@ -73,7 +73,7 @@ function ConnectionGrid({ pillar, hoveredPair, onHover, onLeave }: {
               initial={{ scaleY: 0 }}
               animate={{ scaleY: 1 }}
               transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-              style={{ background: 'linear-gradient(to bottom, transparent, rgba(27,79,190,0.25), transparent)', transformOrigin: 'top' }}
+              style={{ background: 'linear-gradient(to bottom, transparent, rgba(0,50,123,0.25), transparent)', transformOrigin: 'top' }}
             />
           </div>
           <div className="text-right">
@@ -102,8 +102,8 @@ function ConnectionGrid({ pillar, hoveredPair, onHover, onLeave }: {
                 <div
                   className="rounded-xl p-4 border transition-all duration-250"
                   style={{
-                    background:  active ? 'rgba(27,79,190,0.06)' : 'rgba(7,18,43,0.02)',
-                    borderColor: active ? 'rgba(27,79,190,0.25)'  : 'rgba(7,18,43,0.07)',
+                    background:  active ? 'rgba(0,50,123,0.06)' : 'rgba(7,18,43,0.02)',
+                    borderColor: active ? 'rgba(0,50,123,0.25)'  : 'rgba(7,18,43,0.07)',
                     opacity:     dim ? 0.35 : 1,
                   }}
                 >
@@ -111,8 +111,8 @@ function ConnectionGrid({ pillar, hoveredPair, onHover, onLeave }: {
                     <span
                       className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0 mt-0.5 transition-all duration-250"
                       style={{
-                        background: active ? '#1B4FBE' : 'rgba(27,79,190,0.12)',
-                        color:      active ? '#fff'    : '#1B4FBE',
+                        background: active ? '#00327B' : 'rgba(0,50,123,0.12)',
+                        color:      active ? '#fff'    : '#00327B',
                       }}
                     >{i + 1}</span>
                     <span className="text-sm leading-snug text-navy/70" style={{ fontWeight: active ? 500 : 400 }}>
@@ -127,19 +127,19 @@ function ConnectionGrid({ pillar, hoveredPair, onHover, onLeave }: {
                     className="w-full h-px"
                     animate={{ scaleX: active ? 1 : 0.4, opacity: active ? 1 : 0.3 }}
                     transition={{ duration: 0.25 }}
-                    style={{ background: active ? '#1B4FBE' : 'rgba(7,18,43,0.18)', transformOrigin: 'center' }}
+                    style={{ background: active ? '#00327B' : 'rgba(7,18,43,0.18)', transformOrigin: 'center' }}
                   />
                   <motion.span
                     className="text-[9px] font-black tracking-widest"
                     animate={{ opacity: active ? 1 : 0 }}
                     transition={{ duration: 0.2 }}
-                    style={{ color: '#1B4FBE' }}
+                    style={{ color: '#00327B' }}
                   >↔</motion.span>
                   <motion.div
                     className="w-full h-px"
                     animate={{ scaleX: active ? 1 : 0.4, opacity: active ? 1 : 0.3 }}
                     transition={{ duration: 0.25 }}
-                    style={{ background: active ? '#EF8014' : 'rgba(7,18,43,0.18)', transformOrigin: 'center' }}
+                    style={{ background: active ? '#F6B343' : 'rgba(7,18,43,0.18)', transformOrigin: 'center' }}
                   />
                 </div>
 
@@ -147,8 +147,8 @@ function ConnectionGrid({ pillar, hoveredPair, onHover, onLeave }: {
                 <div
                   className="rounded-xl p-4 border transition-all duration-250"
                   style={{
-                    background:  active ? 'rgba(239,128,20,0.06)' : 'rgba(7,18,43,0.02)',
-                    borderColor: active ? 'rgba(239,128,20,0.25)'  : 'rgba(7,18,43,0.07)',
+                    background:  active ? 'rgba(246,179,67,0.06)' : 'rgba(7,18,43,0.02)',
+                    borderColor: active ? 'rgba(246,179,67,0.25)'  : 'rgba(7,18,43,0.07)',
                     opacity:     dim ? 0.35 : 1,
                   }}
                 >
@@ -156,8 +156,8 @@ function ConnectionGrid({ pillar, hoveredPair, onHover, onLeave }: {
                     <span
                       className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0 mt-0.5 transition-all duration-250"
                       style={{
-                        background: active ? '#EF8014' : 'rgba(239,128,20,0.12)',
-                        color:      active ? '#fff'    : '#EF8014',
+                        background: active ? '#F6B343' : 'rgba(246,179,67,0.12)',
+                        color:      active ? '#fff'    : '#F6B343',
                       }}
                     >{i + 1}</span>
                     <span className="text-sm leading-snug text-navy/70" style={{ fontWeight: active ? 500 : 400 }}>
@@ -216,13 +216,12 @@ export default function EIOSectionV2() {
           </div>
           <div className="grid lg:grid-cols-2 gap-10 items-end">
             <h2 className="text-[clamp(2.2rem,4.5vw,4.2rem)] font-black text-navy leading-[0.95] tracking-tight">
-              Enterprise Intelligence{' '}
-              <span className="gradient-text">Orchestration (EIO)</span>
+              Enterprise Intelligence Orchestration (EIO)
             </h2>
             <div className="space-y-5">
               <p className="text-navy/50 text-lg leading-relaxed max-w-[480px]">
                 TresVista and Descrial are two components of one integrated model. Our experts
-                use Descrial to orchestrate data, workflows, and AI — connecting insight to execution.
+                use Descrial to orchestrate data, workflows, and AI, connecting insight to execution.
               </p>
               <a href="/our-solution/"
                 className="inline-flex items-center gap-2 text-sm font-bold text-tvblue hover:text-navy transition-colors duration-200 group"
@@ -256,7 +255,7 @@ export default function EIOSectionV2() {
                         onClick={() => { setActive(i); setHover(null) }}
                         className="w-full flex items-center gap-4 py-4 px-4 rounded-2xl text-left transition-all duration-300 group"
                         style={{
-                          background: isAct ? 'rgba(27,79,190,0.06)' : 'transparent',
+                          background: isAct ? 'rgba(0,50,123,0.06)' : 'transparent',
                         }}
                         whileHover={{ x: 3 }}
                         transition={{ duration: 0.18 }}
@@ -264,14 +263,14 @@ export default function EIOSectionV2() {
                         <div
                           className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
                           style={{
-                            background: isAct ? '#1B4FBE' : 'rgba(7,18,43,0.06)',
+                            background: isAct ? '#00327B' : 'rgba(7,18,43,0.06)',
                           }}
                         >
                           <Icon size={15} style={{ color: isAct ? '#fff' : '#64748B' }} />
                         </div>
                         <div className="min-w-0">
                           <p className="text-[10px] font-bold uppercase tracking-widest mb-0.5"
-                            style={{ color: isAct ? '#1B4FBE' : 'rgba(7,18,43,0.35)' }}>
+                            style={{ color: isAct ? '#00327B' : 'rgba(7,18,43,0.35)' }}>
                             {p.num}
                           </p>
                           <p className="text-sm font-semibold leading-tight truncate"
@@ -283,7 +282,7 @@ export default function EIOSectionV2() {
                           <motion.div
                             layoutId="activePillarBar"
                             className="ml-auto w-1 h-8 rounded-full"
-                            style={{ background: '#1B4FBE' }}
+                            style={{ background: '#00327B' }}
                             transition={{ type: 'spring', stiffness: 400, damping: 38 }}
                           />
                         )}
@@ -320,9 +319,9 @@ export default function EIOSectionV2() {
                         onClick={() => { setActive(i); setHover(null) }}
                         className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200"
                         style={{
-                          background: isAct ? 'rgba(27,79,190,0.08)' : 'rgba(7,18,43,0.04)',
-                          color:      isAct ? '#1B4FBE'               : 'rgba(7,18,43,0.45)',
-                          border:     `1px solid ${isAct ? 'rgba(27,79,190,0.25)' : 'transparent'}`,
+                          background: isAct ? 'rgba(0,50,123,0.08)' : 'rgba(7,18,43,0.04)',
+                          color:      isAct ? '#00327B'               : 'rgba(7,18,43,0.45)',
+                          border:     `1px solid ${isAct ? 'rgba(0,50,123,0.25)' : 'transparent'}`,
                         }}
                       >
                         <Icon size={12} />

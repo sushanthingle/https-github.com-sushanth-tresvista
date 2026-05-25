@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion'
 const COLUMNS = [
   {
     category: 'Corporates',
-    accent: '#1B4FBE',
+    accent: '#00327B',
     items: [
       { label: 'Public',        href: '/who-we-serve/corporates/public/' },
       { label: 'Private',       href: '/who-we-serve/corporates/private/' },
@@ -14,7 +14,7 @@ const COLUMNS = [
   },
   {
     category: 'Asset Managers',
-    accent: '#EF8014',
+    accent: '#F6B343',
     items: [
       { label: 'Private Equity',  href: '/who-we-serve/asset-managers/private-equity/' },
       { label: 'Public Equity',   href: '/who-we-serve/asset-managers/public-equity/' },
@@ -28,7 +28,7 @@ const COLUMNS = [
   },
   {
     category: 'Advisers',
-    accent: '#1B4FBE',
+    accent: '#00327B',
     items: [
       { label: 'Investment Banks',       href: '/who-we-serve/advisers/investment-banks/' },
       { label: 'Investment Consultants', href: '/who-we-serve/advisers/investment-consultants/' },
@@ -74,8 +74,7 @@ export default function WhoWeWorkWithV2() {
               <span className="text-navy/30 text-xs font-bold tracking-[0.18em] uppercase">Who We Work With</span>
             </div>
             <h2 className="text-[clamp(2.4rem,5vw,4.8rem)] font-black text-navy leading-[0.95] tracking-tight">
-              Who We<br />
-              <span className="gradient-text">Work With.</span>
+              Who We Work With.
             </h2>
           </motion.div>
 

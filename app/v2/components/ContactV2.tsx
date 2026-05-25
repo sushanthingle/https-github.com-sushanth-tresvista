@@ -50,7 +50,7 @@ export default function ContactV2() {
         }}
       />
       <div className="absolute bottom-0 right-1/4 w-[700px] h-[500px] pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(27,79,190,0.18) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(ellipse, rgba(0,50,123,0.18) 0%, transparent 65%)' }}
       />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-16">
@@ -68,8 +68,7 @@ export default function ContactV2() {
               <span className="text-white/30 text-xs font-bold tracking-[0.18em] uppercase">Start the Conversation</span>
             </div>
             <h2 className="text-[clamp(2.4rem,5vw,4.8rem)] font-black text-white leading-[0.95] tracking-tight">
-              Start the<br />
-              <span className="gradient-text-white">Conversation.</span>
+              Start the Conversation.
             </h2>
           </motion.div>
 
@@ -139,7 +138,7 @@ export default function ContactV2() {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <motion.path
                         d="M5 12l5 5L19 7"
-                        stroke="#1B4FBE" strokeWidth="2"
+                        stroke="#00327B" strokeWidth="2"
                         strokeLinecap="round" strokeLinejoin="round"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
@@ -244,7 +243,7 @@ export default function ContactV2() {
                     disabled={loading || !privacy}
                     whileHover={!loading && privacy ? { scale: 1.02 } : {}}
                     whileTap={!loading && privacy ? { scale: 0.97 } : {}}
-                    className="mt-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-tvblue text-white text-sm font-semibold rounded-xl hover:bg-[#2E78E8] transition-colors duration-250 disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="mt-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-tvblue text-white text-sm font-semibold rounded-xl hover:bg-[#347EF6] transition-colors duration-250 disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     {loading ? (
                       <>

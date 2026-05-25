@@ -85,9 +85,7 @@ export default function BoldCalloutV2() {
                 initial={{ y: '110%', opacity: 0 }}
                 animate={inView ? { y: 0, opacity: 1 } : {}}
                 transition={{ delay: 0.25 + i * 0.1, duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-                className={`block text-[clamp(2.8rem,6.5vw,7.5rem)] font-black leading-[0.90] tracking-tight ${
-                  i === 0 || i === 2 || i === 4 ? 'gradient-text' : 'text-navy'
-                }`}
+                className="block text-[clamp(2.8rem,6.5vw,7.5rem)] font-black leading-[0.90] tracking-tight text-navy"
               >
                 {word}
               </motion.span>
@@ -103,7 +101,7 @@ export default function BoldCalloutV2() {
           className="text-navy/45 text-base lg:text-lg leading-relaxed max-w-[580px] mb-16"
         >
           While traditional models create gaps between strategy and execution, we close them.
-          The result is a single, embedded partner accountable for the outcome — from initial
+          The result is a single, embedded partner accountable for the outcome, from initial
           data to the final decision.
         </motion.p>
 
