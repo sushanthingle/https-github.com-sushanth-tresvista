@@ -22,7 +22,7 @@ const categories = [
         href: '/sectors/private-companies',
       },
       'Entrepreneurs': {
-        desc: 'We help founder-led businesses build scalable data infrastructure and AI capabilities — from the ground up.',
+        desc: 'We help founder-led businesses build scalable data infrastructure and AI capabilities, from the ground up.',
         href: '/sectors/entrepreneurs',
       },
     } as Record<string, TypeDetail>,
@@ -36,7 +36,7 @@ const categories = [
     ],
     typeDetails: {
       'Private Equity': {
-        desc: 'Deal sourcing, portfolio monitoring, fund administration, and LP reporting — end-to-end execution for PE firms of every size.',
+        desc: 'Deal sourcing, portfolio monitoring, fund administration, and LP reporting, with end-to-end execution for PE firms of every size.',
         href: '/sectors/private-equity',
       },
       'Public Equity': {
@@ -180,7 +180,7 @@ export default function WhoWeWorkWith() {
             transition={{ delay: 0.25, duration: 0.7 }}
             className="text-navy/55 text-base leading-relaxed max-w-[380px] mt-6 lg:mt-0"
           >
-            Across industries, asset classes, and geographies — serving organisations
+            Across industries, asset classes, and geographies, serving organisations
             that demand precision, speed, and accountability.
           </motion.p>
         </div>

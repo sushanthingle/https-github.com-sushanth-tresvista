@@ -64,7 +64,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-[260px] mb-6">
-              Enterprise Intelligence Orchestration — combining advisory, technology infrastructure, and human execution at scale.
+              Enterprise Intelligence Orchestration, combining advisory, technology infrastructure, and human execution at scale.
             </p>
             {/* socials */}
             <div className="flex gap-3">

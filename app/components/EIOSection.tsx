@@ -11,7 +11,7 @@ const PILLARS = [
   {
     id: 0, num: '01', label: 'Technological Transformation', icon: Cpu, color: '#00327B',
     tvTitle: 'Technological Transformation',
-    tvDesc: 'Master data management, business intelligence, custom technology infrastructure, and workflow automation — built around how you operate.',
+    tvDesc: 'Master data management, business intelligence, custom technology infrastructure, and workflow automation, built around how you operate.',
     dsTitle: 'Natural Language Interface',
     dsDesc: 'Query your enterprise data in plain English and get structured, accurate answers instantly.',
     pairs: [
@@ -23,7 +23,7 @@ const PILLARS = [
   {
     id: 1, num: '02', label: 'Human-in-Command', icon: Users, color: '#347EF6',
     tvTitle: 'Human-in-Command',
-    tvDesc: 'AI outputs are only as good as the human intelligence behind them. Our domain experts are embedded in your workflows — not just advising, but executing.',
+    tvDesc: 'AI outputs are only as good as the human intelligence behind them. Our domain experts are embedded in your workflows, not just advising but executing.',
     dsTitle: 'Agentic Workflow Orchestration',
     dsDesc: 'Multi-agent AI systems that execute complex workflows with human approval at every critical gate.',
     pairs: [
@@ -35,9 +35,9 @@ const PILLARS = [
   {
     id: 2, num: '03', label: 'Operational Excellence (ODEx)', icon: Globe2, color: '#00327B',
     tvTitle: 'Operational Excellence (ODEx)',
-    tvDesc: 'Continuous evaluation of AI models, vendors, and tools — so your AI stack evolves with the market, not behind it.',
+    tvDesc: 'Continuous evaluation of AI models, vendors, and tools so your AI stack evolves with the market, not behind it.',
     dsTitle: 'Unified Data Layer',
-    dsDesc: 'A single semantic layer connecting all your existing systems — no rip-and-replace required.',
+    dsDesc: 'A single semantic layer connecting all your existing systems, with no rip-and-replace required.',
     pairs: [
       { tv: 'Continuous research and evaluation of AI vendors and platforms', ds: 'Connects to 200+ data sources out of the box'  },
       { tv: 'Rigorous testing & enterprise-grade validation',                 ds: 'Unified schema across all business domains'    },
@@ -453,7 +453,7 @@ export default function EIOSection() {
             Enterprise Intelligence Orchestration
           </h2>
           <p className="text-navy/55 text-lg max-w-[640px] mx-auto leading-relaxed">
-            TresVista and Descrial are two components of one integrated model. Our experts use Descrial to orchestrate data, workflows, and AI — connecting insight to execution.
+            TresVista and Descrial are two components of one integrated model. Our experts use Descrial to orchestrate data, workflows, and AI, connecting insight to execution.
           </p>
         </motion.div>
 
@@ -547,7 +547,7 @@ export default function EIOSection() {
               className="text-sm font-semibold tracking-wide"
               style={{ color:`rgba(${hex2rgb(pillar.color)},0.80)` }}
             >
-              {pillar.num} — {pillar.label}
+              {pillar.num}. {pillar.label}
             </motion.p>
           </AnimatePresence>
 

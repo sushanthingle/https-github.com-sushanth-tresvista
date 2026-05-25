@@ -37,19 +37,17 @@ export default function WhoWeAre() {
 
           {/* ── left: headline + description + CTA ── */}
           <div>
-            {['Who We Are.'].map((line, i) => (
-              <div key={i} style={{ overflow: 'hidden' }}>
-                <motion.div
-                  initial={{ y: '106%' }}
-                  animate={inView ? { y: 0 } : {}}
-                  transition={{ delay: i * 0.12, duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-                >
-                  <h2 className="text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold leading-[1.0] tracking-tight text-navy">
-                    {line}
-                  </h2>
-                </motion.div>
-              </div>
-            ))}
+            <div style={{ overflow: 'hidden' }}>
+              <motion.div
+                initial={{ y: '106%' }}
+                animate={inView ? { y: 0 } : {}}
+                transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+              >
+                <h2 className="text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold leading-[1.0] tracking-tight text-navy">
+                  One Embedded Partner.
+                </h2>
+              </motion.div>
+            </div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -67,9 +65,7 @@ export default function WhoWeAre() {
               transition={{ delay: 0.36, duration: 0.65 }}
               className="text-navy/50 text-base leading-relaxed mb-10"
             >
-              One embedded partner. Full accountability across the value chain — from
-              data infrastructure and AI governance to human-led execution at every
-              stage of the workflow.
+              One embedded partner. Full accountability across the value chain, from data infrastructure and AI governance to human-led execution at every stage of the workflow.
             </motion.p>
 
             <motion.a
