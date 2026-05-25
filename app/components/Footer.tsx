@@ -48,7 +48,7 @@ export default function Footer() {
 
       {/* ambient glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[200px] rounded-full opacity-[0.06] pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, #1B4FBE 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse, #00327B 0%, transparent 70%)' }} />
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16 py-16 relative z-10">
         <div className="grid lg:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-14">

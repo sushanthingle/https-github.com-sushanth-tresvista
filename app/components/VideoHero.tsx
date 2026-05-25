@@ -1,7 +1,7 @@
 'use client'
 import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const SLIDES = [
   {
@@ -212,27 +212,48 @@ export default function VideoHero() {
           </AnimatePresence>
         </div>
 
-        {/* ── slide progress indicators ── */}
-        <div className="flex items-center gap-2.5 mb-12">
-          {SLIDES.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              aria-label={`Slide ${i + 1}`}
-              className="relative h-[2px] rounded-full overflow-hidden transition-all duration-300"
-              style={{ width: i === active ? 36 : 14, background: 'rgba(255,255,255,0.20)' }}
-            >
-              {i === active && (
-                <div
-                  className="absolute inset-y-0 left-0 bg-white rounded-full"
-                  style={{ width: `${prog}%`, transition: 'width 40ms linear' }}
-                />
-              )}
-            </button>
-          ))}
-          <span className="text-[10px] text-white/25 font-medium ml-2 tracking-widest">
-            0{active + 1} / 0{SLIDES.length}
-          </span>
+        {/* ── slide progress indicators + nav arrows ── */}
+        <div className="flex items-center gap-4 mb-12">
+          {/* prev arrow */}
+          <button
+            onClick={() => goTo((active - 1 + SLIDES.length) % SLIDES.length)}
+            aria-label="Previous slide"
+            className="w-9 h-9 rounded-full flex items-center justify-center border border-white/20 text-white/60 hover:border-white/50 hover:text-white transition-all duration-200 flex-shrink-0"
+          >
+            <ChevronLeft size={16} />
+          </button>
+
+          {/* dot indicators */}
+          <div className="flex items-center gap-2.5">
+            {SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                aria-label={`Slide ${i + 1}`}
+                className="relative h-[2px] rounded-full overflow-hidden transition-all duration-300"
+                style={{ width: i === active ? 36 : 14, background: 'rgba(255,255,255,0.20)' }}
+              >
+                {i === active && (
+                  <div
+                    className="absolute inset-y-0 left-0 bg-white rounded-full"
+                    style={{ width: `${prog}%`, transition: 'width 40ms linear' }}
+                  />
+                )}
+              </button>
+            ))}
+            <span className="text-[10px] text-white/25 font-medium ml-1 tracking-widest">
+              0{active + 1} / 0{SLIDES.length}
+            </span>
+          </div>
+
+          {/* next arrow */}
+          <button
+            onClick={() => goTo((active + 1) % SLIDES.length)}
+            aria-label="Next slide"
+            className="w-9 h-9 rounded-full flex items-center justify-center border border-white/20 text-white/60 hover:border-white/50 hover:text-white transition-all duration-200 flex-shrink-0"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
 
         {/* ── stats strip — in the first fold ── */}

@@ -37,18 +37,14 @@ export default function WhoWeAre() {
 
           {/* ── left: headline + description + CTA ── */}
           <div>
-            {['Where Strategy', 'Meets Execution.'].map((line, i) => (
+            {['Who We Are.'].map((line, i) => (
               <div key={i} style={{ overflow: 'hidden' }}>
                 <motion.div
                   initial={{ y: '106%' }}
                   animate={inView ? { y: 0 } : {}}
                   transition={{ delay: i * 0.12, duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
                 >
-                  <h2
-                    className={`text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold leading-[1.0] tracking-tight ${
-                      i === 1 ? 'text-tvblue' : 'text-navy'
-                    }`}
-                  >
+                  <h2 className="text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold leading-[1.0] tracking-tight text-navy">
                     {line}
                   </h2>
                 </motion.div>

@@ -9,7 +9,7 @@ function hex2rgb(h: string) {
 
 const PILLARS = [
   {
-    id: 0, num: '01', label: 'Technological Transformation', icon: Cpu, color: '#1B4FBE',
+    id: 0, num: '01', label: 'Technological Transformation', icon: Cpu, color: '#00327B',
     tvTitle: 'Technological Transformation',
     tvDesc: 'Master data management, business intelligence, custom technology infrastructure, and workflow automation — built around how you operate.',
     dsTitle: 'Natural Language Interface',
@@ -21,7 +21,7 @@ const PILLARS = [
     ],
   },
   {
-    id: 1, num: '02', label: 'Human-in-Command', icon: Users, color: '#2E78E8',
+    id: 1, num: '02', label: 'Human-in-Command', icon: Users, color: '#347EF6',
     tvTitle: 'Human-in-Command',
     tvDesc: 'AI outputs are only as good as the human intelligence behind them. Our domain experts are embedded in your workflows — not just advising, but executing.',
     dsTitle: 'Agentic Workflow Orchestration',
@@ -33,7 +33,7 @@ const PILLARS = [
     ],
   },
   {
-    id: 2, num: '03', label: 'Operational Excellence (ODEx)', icon: Globe2, color: '#2E78E8',
+    id: 2, num: '03', label: 'Operational Excellence (ODEx)', icon: Globe2, color: '#00327B',
     tvTitle: 'Operational Excellence (ODEx)',
     tvDesc: 'Continuous evaluation of AI models, vendors, and tools — so your AI stack evolves with the market, not behind it.',
     dsTitle: 'Unified Data Layer',
@@ -46,7 +46,7 @@ const PILLARS = [
   },
 ]
 
-const PAIR_COLORS = ['#4A9BF5', '#2E78E8', '#1B4FBE']
+const PAIR_COLORS = ['#347EF6', '#00327B', '#347EF6']
 const SLIDE_MS    = 6500
 
 function ScanBorder({ color, reverse = false }: { color: string; reverse?: boolean }) {
@@ -111,7 +111,7 @@ function OrbitalCircle({
           from={`0 ${cx} ${cy}`} to={`360 ${cx} ${cy}`} dur="22s" repeatCount="indefinite"/>
       </circle>
       <circle cx={cx} cy={cy} r={117}
-        fill="none" stroke="rgba(46,120,232,0.50)" strokeWidth="3.5" strokeLinecap="round"
+        fill="none" stroke="rgba(52,126,246,0.50)" strokeWidth="3.5" strokeLinecap="round"
         strokeDasharray={`${Math.PI*117*0.24} ${Math.PI*117*1.76}`}
         filter={`url(#gl-${gid})`}
       >
@@ -283,7 +283,7 @@ function BannerSlide({
   onLeave(): void
 }) {
   const rgb    = hex2rgb(pillar.color)
-  const orgRgb = hex2rgb('#2E78E8')
+  const orgRgb = hex2rgb('#347EF6')
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px_1fr] gap-5 items-center">
@@ -300,8 +300,8 @@ function BannerSlide({
         <ScanBorder color={pillar.color}/>
         <div className="flex items-center gap-2 mb-5">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <polygon points="0,18 9,0 18,18" fill="#1B4FBE" clipPath={`url(#tvL${pillar.id})`}/>
-            <polygon points="0,18 9,0 18,18" fill="#2E78E8" clipPath={`url(#tvR${pillar.id})`}/>
+            <polygon points="0,18 9,0 18,18" fill="#00327B" clipPath={`url(#tvL${pillar.id})`}/>
+            <polygon points="0,18 9,0 18,18" fill="#347EF6" clipPath={`url(#tvR${pillar.id})`}/>
             <defs>
               <clipPath id={`tvL${pillar.id}`}><rect x="0" y="0" width="9" height="18"/></clipPath>
               <clipPath id={`tvR${pillar.id}`}><rect x="9" y="0" width="9" height="18"/></clipPath>
@@ -330,8 +330,8 @@ function BannerSlide({
         <div className="w-full max-w-[360px] rounded-2xl p-4"
           style={{
             background: 'linear-gradient(135deg, #EEF4FF 0%, #F8FBFF 100%)',
-            boxShadow: '0 8px 40px rgba(27,79,190,0.10), 0 2px 12px rgba(7,18,43,0.06)',
-            border: '1px solid rgba(27,79,190,0.10)',
+            boxShadow: '0 8px 40px rgba(0,50,123,0.10), 0 2px 12px rgba(7,18,43,0.06)',
+            border: '1px solid rgba(0,50,123,0.10)',
           }}>
           <OrbitalCircle pillar={pillar} hoveredPair={hoveredPair}/>
         </div>
@@ -346,12 +346,12 @@ function BannerSlide({
           boxShadow:  '0 2px 24px rgba(7,18,43,0.07)',
         }}
       >
-        <ScanBorder color="#2E78E8" reverse/>
+        <ScanBorder color="#347EF6" reverse/>
         <div className="flex items-center gap-2 mb-5">
-          <span className="text-xl font-bold leading-none" style={{ color: '#2E78E8' }}>D</span>
-          <span className="text-[11px] font-bold tracking-[0.14em] uppercase" style={{ color: '#2E78E8' }}>Descrial</span>
+          <span className="text-xl font-bold leading-none" style={{ color: '#347EF6' }}>D</span>
+          <span className="text-[11px] font-bold tracking-[0.14em] uppercase" style={{ color: '#347EF6' }}>Descrial</span>
           <span className="ml-auto text-[9px] font-bold tracking-widest uppercase"
-            style={{ color:'rgba(46,120,232,0.45)' }}>The Platform</span>
+            style={{ color:'rgba(52,126,246,0.45)' }}>The Platform</span>
         </div>
 
         <h3 className="text-navy font-bold text-xl leading-snug mb-2">{pillar.dsTitle}</h3>
@@ -364,7 +364,7 @@ function BannerSlide({
           ))}
         </div>
 
-        <div className="h-px mt-6" style={{ background:'linear-gradient(to left,rgba(46,120,232,0.25),transparent)' }}/>
+        <div className="h-px mt-6" style={{ background:'linear-gradient(to left,rgba(52,126,246,0.25),transparent)' }}/>
       </div>
     </div>
   )
@@ -450,8 +450,7 @@ export default function EIOSection() {
             />
           </div>
           <h2 className="text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold text-navy leading-[1.1] tracking-tight mb-5">
-            Enterprise Intelligence{' '}
-            <span className="text-tvblue">Orchestration</span>
+            Enterprise Intelligence Orchestration
           </h2>
           <p className="text-navy/55 text-lg max-w-[640px] mx-auto leading-relaxed">
             TresVista and Descrial are two components of one integrated model. Our experts use Descrial to orchestrate data, workflows, and AI — connecting insight to execution.

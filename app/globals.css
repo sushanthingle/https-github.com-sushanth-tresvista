@@ -5,9 +5,9 @@
 :root {
   --navy:       #07122B;
   --navy-dark:  #030B1A;
-  --tvblue:     #1B4FBE;
-  --tvblue-light:#2E78E8;
-  --tvorange:   #EF8014;
+  --tvblue:     #00327B;
+  --tvblue-light:#347EF6;
+  --tvorange:   #F6B343;
   --surface:    #F4F7FB;
 }
 
@@ -58,9 +58,9 @@ body {
 /* ── animated mesh background ── */
 .mesh-bg {
   background:
-    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(27,79,190,0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(239,128,20,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(27,79,190,0.08) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(0,50,123,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(246,179,67,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(0,50,123,0.08) 0%, transparent 70%);
 }
 
 /* ── svg path draw animation ── */
@@ -203,6 +203,6 @@ body {
   .text-balance { text-wrap: balance; }
   .border-l-gradient {
     border-left: 2px solid;
-    border-image: linear-gradient(to bottom, #1B4FBE, #EF8014) 1;
+    border-image: linear-gradient(to bottom, #00327B, #347EF6) 1;
   }
 }

@@ -10,14 +10,14 @@ const config: Config = {
     extend: {
       colors: {
         navy:    { DEFAULT: '#07122B', dark: '#030B1A', light: '#0D2460' },
-        tvblue:  { DEFAULT: '#1B4FBE', light: '#2E78E8', bright: '#4A9AF5', muted: '#1A3A8C' },
-        tvorange:{ DEFAULT: '#EF8014', light: '#FAA34A', muted: '#C96800' },
+        tvblue:  { DEFAULT: '#00327B', light: '#347EF6', bright: '#347EF6', muted: '#002060' },
+        tvorange:{ DEFAULT: '#F6B343', light: '#F9C97A', muted: '#D99B10' },
         slate:   { DEFAULT: '#64748B', light: '#94A3B8', dark: '#334155' },
         surface: { DEFAULT: '#F4F7FB', dark: '#E8EDF5' },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
       },
       animation: {
         'spin-slow':    'spin 20s linear infinite',

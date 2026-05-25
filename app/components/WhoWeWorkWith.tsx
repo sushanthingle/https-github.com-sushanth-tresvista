@@ -3,7 +3,7 @@ import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion'
 import { Building2, TrendingUp, Briefcase, ChevronRight, ArrowRight } from 'lucide-react'
 
-const BLUE = '#1B4FBE'
+const BLUE = '#00327B'
 
 type TypeDetail = { desc: string; href: string }
 
@@ -168,8 +168,7 @@ export default function WhoWeWorkWith() {
                 transition={{ delay: 0.08, duration: 0.95, ease: [0.76, 0, 0.24, 1] }}
               >
                 <h2 className="text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold text-navy leading-[1.0] tracking-tight">
-                  Who We{' '}
-                  <span className="text-tvblue">Work With</span>
+                  Who We Work With
                 </h2>
               </motion.div>
             </div>

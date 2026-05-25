@@ -120,7 +120,7 @@ export default function Navbar() {
             href="#contact"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="px-5 py-2.5 bg-tvblue text-white text-sm font-semibold rounded-lg hover:bg-tvblue-light transition-colors duration-200 shadow-[0_4px_14px_rgba(27,79,190,0.30)]"
+            className="px-5 py-2.5 bg-tvblue text-white text-sm font-semibold rounded-lg hover:bg-tvblue-light transition-colors duration-200 shadow-[0_4px_14px_rgba(0,50,123,0.30)]"
           >
             Start the Conversation
           </motion.a>

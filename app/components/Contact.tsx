@@ -48,8 +48,7 @@ export default function Contact() {
             <span className="w-8 h-[2px] bg-tvblue block" />
           </div>
           <h2 className="text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold text-navy leading-[1.06] tracking-tight mb-4">
-            Start the{' '}
-            <span className="text-tvblue">Conversation.</span>
+            Start the Conversation.
           </h2>
           <p className="text-navy/50 text-lg max-w-[480px] mx-auto leading-relaxed">
             A conversation is the first step. Clarity is the first outcome.
@@ -206,7 +205,7 @@ export default function Contact() {
                 <motion.button
                   type="submit"
                   disabled={formState === 'loading'}
-                  whileHover={{ scale: 1.02, boxShadow: '0 12px 32px rgba(27,79,190,0.35)' }}
+                  whileHover={{ scale: 1.02, boxShadow: '0 12px 32px rgba(0,50,123,0.35)' }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full flex items-center justify-center gap-2 py-4 bg-tvblue text-white font-semibold rounded-xl text-sm transition-all duration-200 disabled:opacity-70"
                 >
