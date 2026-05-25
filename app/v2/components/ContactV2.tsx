@@ -36,39 +36,60 @@ export default function ContactV2() {
     setTimeout(() => { setLoading(false); setSent(true) }, 1400)
   }
 
-  const inputCls = "bg-white/5 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-tvblue/50 focus:bg-white/8 transition-all duration-200 w-full"
-  const labelCls = "text-[11px] font-bold tracking-[0.14em] uppercase text-white/30 block mb-1.5"
+  const inputCls = "bg-white border border-black/12 rounded-[8px] px-4 py-3 text-sm text-black placeholder-black/25 outline-none focus:border-black/40 focus:ring-2 focus:ring-black/6 transition-all duration-200 w-full"
+  const labelCls = "block mb-1.5 text-[11px] font-bold tracking-[0.14em] uppercase text-[#444444]"
 
   return (
-    <section id="contact" ref={ref} className="relative bg-navy overflow-hidden py-28 lg:py-40">
-
-      {/* grid texture */}
-      <div className="absolute inset-0 opacity-[0.035]"
+    <section
+      id="contact"
+      ref={ref}
+      style={{
+        backgroundColor: '#e5e7eb',
+        borderRadius: '64px 64px 0 0',
+        marginTop: '-64px',
+        position: 'relative',
+        zIndex: 5,
+      }}
+      className="overflow-hidden py-24 lg:py-36"
+    >
+      {/* Subtle grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.028) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.028) 1px,transparent 1px)',
           backgroundSize: '80px 80px',
         }}
       />
-      <div className="absolute bottom-0 right-1/4 w-[700px] h-[500px] pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(0,50,123,0.18) 0%, transparent 65%)' }}
-      />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-16">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
 
-        {/* header */}
+        {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-16 lg:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-tvblue text-xs font-bold tracking-[0.22em] uppercase">05</span>
-              <span className="h-px w-8 bg-tvblue/50 block" />
-              <span className="text-white/30 text-xs font-bold tracking-[0.18em] uppercase">Start the Conversation</span>
+            <div className="flex items-center gap-3 mb-5">
+              <span
+                className="text-[11px] font-bold tracking-[0.24em] uppercase"
+                style={{ color: '#000', fontFamily: 'var(--font-ibm-plex-mono, monospace)' }}
+              >
+                04
+              </span>
+              <span className="h-px w-8 bg-black/25 block" />
+              <span className="text-black/30 text-[11px] font-bold tracking-[0.18em] uppercase">Start the Conversation</span>
             </div>
-            <h2 className="text-[clamp(2.4rem,5vw,4.8rem)] font-black text-white leading-[0.95] tracking-tight">
-              Start the Conversation.
+            <h2
+              className="text-black"
+              style={{
+                fontFamily: 'var(--font-bebas-neue, sans-serif)',
+                fontSize: 'clamp(3rem, 6.5vw, 6.5rem)',
+                lineHeight: 0.90,
+                letterSpacing: '-0.025em',
+              }}
+            >
+              START THE<br />CONVERSATION.
             </h2>
           </motion.div>
 
@@ -76,15 +97,15 @@ export default function ContactV2() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.18, duration: 0.7 }}
-            className="text-white/30 text-[11px] font-bold tracking-[0.18em] uppercase leading-relaxed max-w-[380px]"
+            className="text-[#444444] text-[13px] font-bold tracking-[0.16em] uppercase leading-relaxed max-w-[340px]"
           >
             A conversation is the first step. Clarity is the first outcome.
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_480px] gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-[1fr_520px] gap-12 lg:gap-20">
 
-          {/* left — value props */}
+          {/* Left: value props */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -92,7 +113,7 @@ export default function ContactV2() {
             className="flex flex-col gap-10"
           >
             <div>
-              <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-white/25 mb-6">Why TresVista</p>
+              <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-black/30 mb-6">Why TresVista</p>
               <ul className="space-y-4">
                 {VALUE_PROPS.map((prop, i) => (
                   <motion.li
@@ -102,28 +123,31 @@ export default function ContactV2() {
                     transition={{ delay: 0.28 + i * 0.07, duration: 0.5 }}
                     className="flex items-start gap-4"
                   >
-                    <CheckCircle2 size={16} className="text-tvblue/70 flex-shrink-0 mt-0.5" />
-                    <span className="text-white/55 text-sm leading-relaxed">{prop}</span>
+                    <CheckCircle2 size={16} className="text-black/35 flex-shrink-0 mt-0.5" />
+                    <span className="text-[#444444] text-sm leading-relaxed">{prop}</span>
                   </motion.li>
                 ))}
               </ul>
             </div>
 
-            <div className="border-t border-white/6 pt-8">
-              <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-white/25 mb-4">Direct Contact</p>
-              <a href="mailto:reachus@tresvista.com"
-                className="text-sm text-white/45 hover:text-white/80 transition-colors duration-200">
+            <div className="border-t border-black/10 pt-8">
+              <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-black/25 mb-4">Direct Contact</p>
+              <a
+                href="mailto:reachus@tresvista.com"
+                className="text-sm text-[#444444] hover:text-black transition-colors duration-200"
+              >
                 reachus@tresvista.com
               </a>
             </div>
           </motion.div>
 
-          {/* right — form */}
+          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.28, duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
-            className="bg-white/[0.04] border border-white/6 rounded-2xl p-8 lg:p-10 backdrop-blur-sm"
+            className="rounded-[32px] p-8 lg:p-10"
+            style={{ backgroundColor: '#ffffff' }}
           >
             <AnimatePresence mode="wait">
               {sent ? (
@@ -134,11 +158,11 @@ export default function ContactV2() {
                   exit={{ opacity: 0 }}
                   className="min-h-[500px] flex flex-col items-center justify-center text-center gap-5"
                 >
-                  <div className="w-14 h-14 rounded-full bg-tvblue/20 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: '#d1ffca' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <motion.path
                         d="M5 12l5 5L19 7"
-                        stroke="#00327B" strokeWidth="2"
+                        stroke="#000" strokeWidth="2"
                         strokeLinecap="round" strokeLinejoin="round"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
@@ -146,8 +170,8 @@ export default function ContactV2() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-white text-xl font-bold">Message sent.</h3>
-                  <p className="text-white/40 text-sm leading-relaxed max-w-[260px]">
+                  <h3 className="text-black text-xl font-bold">Message sent.</h3>
+                  <p className="text-[#444444] text-sm leading-relaxed max-w-[260px]">
                     Our team will be in touch within one business day. We look forward to connecting.
                   </p>
                 </motion.div>
@@ -190,16 +214,16 @@ export default function ContactV2() {
                       <label className={labelCls}>Source</label>
                       <select value={source} onChange={e => setSource(e.target.value)}
                         className={`${inputCls} appearance-none cursor-pointer`}>
-                        <option value="" className="bg-navy">How did you hear about us?</option>
-                        {SOURCE_OPTIONS.map(o => <option key={o} value={o} className="bg-navy">{o}</option>)}
+                        <option value="">How did you hear about us?</option>
+                        {SOURCE_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
                       </select>
                     </div>
                     <div>
                       <label className={labelCls}>Inquiry Type</label>
                       <select value={inquiry} onChange={e => setInquiry(e.target.value)}
                         className={`${inputCls} appearance-none cursor-pointer`}>
-                        <option value="" className="bg-navy">Select type...</option>
-                        {INQUIRY_TYPES.map(o => <option key={o} value={o} className="bg-navy">{o}</option>)}
+                        <option value="">Select type...</option>
+                        {INQUIRY_TYPES.map(o => <option key={o} value={o}>{o}</option>)}
                       </select>
                     </div>
                   </div>
@@ -211,17 +235,14 @@ export default function ContactV2() {
                       className={`${inputCls} resize-none`} />
                   </div>
 
-                  {/* privacy checkbox */}
                   <label className="flex items-start gap-3 cursor-pointer group">
                     <button
                       type="button"
                       role="checkbox"
                       aria-checked={privacy}
                       onClick={() => setPrivacy(p => !p)}
-                      className={`w-5 h-5 rounded flex-shrink-0 mt-0.5 border transition-all duration-200 flex items-center justify-center ${
-                        privacy
-                          ? 'bg-tvblue border-tvblue'
-                          : 'bg-white/5 border-white/20 group-hover:border-white/40'
+                      className={`w-5 h-5 rounded-[4px] flex-shrink-0 mt-0.5 border transition-all duration-200 flex items-center justify-center ${
+                        privacy ? 'bg-black border-black' : 'bg-white border-black/20 group-hover:border-black/40'
                       }`}
                     >
                       {privacy && (
@@ -230,9 +251,9 @@ export default function ContactV2() {
                         </svg>
                       )}
                     </button>
-                    <span className="text-[12px] text-white/35 leading-relaxed">
+                    <span className="text-[12px] text-[#444444] leading-relaxed">
                       I have read the{' '}
-                      <a href="/privacy-policy/" className="text-tvblue/80 hover:text-tvblue underline underline-offset-2 transition-colors">
+                      <a href="/privacy-policy/" className="text-black underline underline-offset-2 hover:no-underline transition-all">
                         TresVista Privacy Statement
                       </a>
                     </span>
@@ -243,7 +264,7 @@ export default function ContactV2() {
                     disabled={loading || !privacy}
                     whileHover={!loading && privacy ? { scale: 1.02 } : {}}
                     whileTap={!loading && privacy ? { scale: 0.97 } : {}}
-                    className="mt-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-tvblue text-white text-sm font-semibold rounded-xl hover:bg-[#347EF6] transition-colors duration-250 disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="mt-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-black text-white text-sm font-semibold rounded-[8px] hover:bg-[#2f2f2f] transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     {loading ? (
                       <>
@@ -264,7 +285,6 @@ export default function ContactV2() {
               )}
             </AnimatePresence>
           </motion.div>
-
         </div>
       </div>
     </section>

@@ -1,15 +1,14 @@
 'use client'
-import { useState, useRef } from 'react'
-import { motion, AnimatePresence, useInView, useScroll, useMotionValueEvent } from 'framer-motion'
-import { Cpu, Users, Globe2 } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { Cpu, Users, Globe2, ArrowRight } from 'lucide-react'
 
-/* ─── data ─────────────────────────────────────────────────────── */
 const PILLARS = [
   {
-    id: 0, num: '01', label: 'Technological Transformation', icon: Cpu,
-    tvTitle: 'Technological Transformation',
+    num: '01', label: 'Technological Transformation', icon: Cpu,
+    tvTitle: 'TresVista',
     tvDesc: 'The answers to your biggest questions are in your data. We build the bridge to find them.',
-    dsTitle: 'Descrial Data Platform',
+    dsTitle: 'Descrial',
     dsDesc: 'Orchestrate data, workflows, and AI, connecting insight to execution.',
     pairs: [
       { tv: 'Master data model design and governance for AI deployment', ds: 'Unified data layer connecting all enterprise sources'  },
@@ -18,351 +17,242 @@ const PILLARS = [
     ],
   },
   {
-    id: 1, num: '02', label: 'Human-in-Command', icon: Users,
-    tvTitle: 'Human-in-Command',
+    num: '02', label: 'Human-in-Command', icon: Users,
+    tvTitle: 'TresVista',
     tvDesc: 'Our experts on the front line, managing your data, running your workflows, and ensuring the quality of every result.',
-    dsTitle: 'Governed AI Workflows',
+    dsTitle: 'Descrial',
     dsDesc: 'Every AI output validated and executed by embedded experts, no black box.',
     pairs: [
-      { tv: 'Investment & finance professionals executing across the value chain', ds: 'Multi-step AI workflows with human approval gates'       },
-      { tv: 'Data migration and managed technology services',                     ds: 'Full audit trail and accountability at every handoff'    },
-      { tv: 'AI output validation and quality sign-off',                          ds: 'Expert-in-the-loop validation before every delivery'    },
+      { tv: 'Investment and finance professionals executing across the value chain', ds: 'Multi-step AI workflows with human approval gates'    },
+      { tv: 'Data migration and managed technology services',                       ds: 'Full audit trail and accountability at every handoff' },
+      { tv: 'AI output validation and quality sign-off',                            ds: 'Expert-in-the-loop validation before every delivery'  },
     ],
   },
   {
-    id: 2, num: '03', label: 'Operational Excellence (ODEx)', icon: Globe2,
-    tvTitle: 'Operational Excellence (ODEx)',
+    num: '03', label: 'Operational Excellence (ODEx)', icon: Globe2,
+    tvTitle: 'TresVista',
     tvDesc: 'Deploy the most advanced AI with the confidence of enterprise-grade validation.',
-    dsTitle: 'AI Tool Stack & Evaluation',
+    dsTitle: 'Descrial',
     dsDesc: 'Continuously researched, validated, and curated for your enterprise workflows.',
     pairs: [
       { tv: 'Continuous research and evaluation of AI vendors and platforms', ds: 'Best-in-class AI stack selected and integrated for you' },
-      { tv: 'Rigorous testing & enterprise-grade validation',                 ds: 'Structured red-teaming and performance benchmarking'   },
+      { tv: 'Rigorous testing and enterprise-grade validation',               ds: 'Structured red-teaming and performance benchmarking'   },
       { tv: 'Curated AI tool stack for client workflows',                    ds: 'Ongoing optimisation as models and tools evolve'        },
     ],
   },
 ]
 
-/* ─── connection grid (the 1-to-1 panel) ──────────────────────── */
-function ConnectionGrid({ pillar, hoveredPair, onHover, onLeave }: {
-  pillar: typeof PILLARS[0]
-  hoveredPair: number | null
-  onHover(i: number): void
-  onLeave(): void
-}) {
+function PillarCard({ pillar, index, inView }: { pillar: typeof PILLARS[0]; index: number; inView: boolean }) {
+  const [expanded, setExpanded] = useState(false)
+  const Icon = pillar.icon
+
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={pillar.id}
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -24 }}
-        transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
-      >
-        {/* column headers */}
-        <div className="grid grid-cols-[1fr_60px_1fr] gap-4 mb-8">
-          <div>
-            <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-tvblue/70 block mb-1">TresVista</span>
-            <h4 className="text-navy font-extrabold text-base leading-snug">{pillar.tvTitle}</h4>
-            <p className="text-navy/45 text-sm mt-1 leading-relaxed">{pillar.tvDesc}</p>
-          </div>
-          <div className="flex flex-col items-center pt-4 gap-2">
-            {/* vertical connector thread */}
-            <motion.div
-              className="w-px flex-1"
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-              style={{ background: 'linear-gradient(to bottom, transparent, rgba(0,50,123,0.25), transparent)', transformOrigin: 'top' }}
-            />
-          </div>
-          <div className="text-right">
-            <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-tvorange/70 block mb-1">Descrial</span>
-            <h4 className="text-navy font-extrabold text-base leading-snug">{pillar.dsTitle}</h4>
-            <p className="text-navy/45 text-sm mt-1 leading-relaxed">{pillar.dsDesc}</p>
-          </div>
-        </div>
-
-        {/* divider */}
-        <div className="h-px bg-navy/7 mb-6" />
-
-        {/* 1-to-1 pair rows */}
-        <div className="space-y-3">
-          {pillar.pairs.map((pair, i) => {
-            const active = hoveredPair === i
-            const dim    = hoveredPair !== null && !active
-            return (
-              <div
-                key={i}
-                className="grid grid-cols-[1fr_60px_1fr] gap-4 items-center group"
-                onMouseEnter={() => onHover(i)}
-                onMouseLeave={onLeave}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.75, delay: 0.15 + index * 0.12, ease: [0.76, 0, 0.24, 1] }}
+      className="rounded-[32px] overflow-hidden"
+      style={{ backgroundColor: '#000000' }}
+    >
+      {/* Card body */}
+      <div className="p-8 lg:p-10">
+        <div className="flex items-start justify-between gap-6 mb-8">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-[12px] flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.08)' }}>
+              <Icon size={18} style={{ color: '#d1ffca' }} />
+            </div>
+            <div>
+              <span
+                className="block mb-0.5"
+                style={{ color: '#d1ffca', fontSize: '10px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', fontFamily: 'var(--font-ibm-plex-mono, monospace)' }}
               >
-                {/* TV item */}
-                <div
-                  className="rounded-xl p-4 border transition-all duration-250"
-                  style={{
-                    background:  active ? 'rgba(0,50,123,0.06)' : 'rgba(7,18,43,0.02)',
-                    borderColor: active ? 'rgba(0,50,123,0.25)'  : 'rgba(7,18,43,0.07)',
-                    opacity:     dim ? 0.35 : 1,
-                  }}
-                >
-                  <div className="flex items-start gap-3">
-                    <span
-                      className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0 mt-0.5 transition-all duration-250"
-                      style={{
-                        background: active ? '#00327B' : 'rgba(0,50,123,0.12)',
-                        color:      active ? '#fff'    : '#00327B',
-                      }}
-                    >{i + 1}</span>
-                    <span className="text-sm leading-snug text-navy/70" style={{ fontWeight: active ? 500 : 400 }}>
-                      {pair.tv}
-                    </span>
-                  </div>
-                </div>
+                {pillar.num}
+              </span>
+              <span className="text-white/35 text-[11px] font-bold tracking-[0.14em] uppercase">{pillar.label}</span>
+            </div>
+          </div>
 
-                {/* connector */}
-                <div className="flex flex-col items-center gap-1">
-                  <motion.div
-                    className="w-full h-px"
-                    animate={{ scaleX: active ? 1 : 0.4, opacity: active ? 1 : 0.3 }}
-                    transition={{ duration: 0.25 }}
-                    style={{ background: active ? '#00327B' : 'rgba(7,18,43,0.18)', transformOrigin: 'center' }}
-                  />
-                  <motion.span
-                    className="text-[9px] font-black tracking-widest"
-                    animate={{ opacity: active ? 1 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    style={{ color: '#00327B' }}
-                  >↔</motion.span>
-                  <motion.div
-                    className="w-full h-px"
-                    animate={{ scaleX: active ? 1 : 0.4, opacity: active ? 1 : 0.3 }}
-                    transition={{ duration: 0.25 }}
-                    style={{ background: active ? '#F6B343' : 'rgba(7,18,43,0.18)', transformOrigin: 'center' }}
-                  />
-                </div>
-
-                {/* DS item */}
-                <div
-                  className="rounded-xl p-4 border transition-all duration-250"
-                  style={{
-                    background:  active ? 'rgba(246,179,67,0.06)' : 'rgba(7,18,43,0.02)',
-                    borderColor: active ? 'rgba(246,179,67,0.25)'  : 'rgba(7,18,43,0.07)',
-                    opacity:     dim ? 0.35 : 1,
-                  }}
-                >
-                  <div className="flex items-start gap-3">
-                    <span
-                      className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0 mt-0.5 transition-all duration-250"
-                      style={{
-                        background: active ? '#F6B343' : 'rgba(246,179,67,0.12)',
-                        color:      active ? '#fff'    : '#F6B343',
-                      }}
-                    >{i + 1}</span>
-                    <span className="text-sm leading-snug text-navy/70" style={{ fontWeight: active ? 500 : 400 }}>
-                      {pair.ds}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+          <button
+            onClick={() => setExpanded(e => !e)}
+            className="w-9 h-9 rounded-[8px] flex items-center justify-center text-white/40 hover:text-white transition-all duration-200 flex-shrink-0"
+            style={{ background: 'rgba(255,255,255,0.06)' }}
+            aria-label={expanded ? 'Collapse' : 'Expand'}
+          >
+            <motion.span
+              animate={{ rotate: expanded ? 45 : 0 }}
+              transition={{ duration: 0.22 }}
+              className="text-xl font-light leading-none select-none"
+            >
+              +
+            </motion.span>
+          </button>
         </div>
 
-        <p className="text-center mt-6 text-[11px] text-navy/25 font-medium">
-          Hover any row to reveal its 1-to-1 connection
-        </p>
-      </motion.div>
-    </AnimatePresence>
+        <h3
+          className="text-white mb-8"
+          style={{
+            fontFamily: 'var(--font-bebas-neue, sans-serif)',
+            fontSize: 'clamp(2rem, 3.5vw, 3.2rem)',
+            lineHeight: 0.90,
+            letterSpacing: '-0.02em',
+          }}
+        >
+          {pillar.label}
+        </h3>
+
+        <div className="grid sm:grid-cols-2 gap-6">
+          <div>
+            <p
+              className="mb-2"
+              style={{ color: 'rgba(209,255,202,0.65)', fontSize: '10px', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', fontFamily: 'var(--font-ibm-plex-mono, monospace)' }}
+            >
+              {pillar.tvTitle}
+            </p>
+            <p className="text-white/50 text-sm leading-relaxed">{pillar.tvDesc}</p>
+          </div>
+          <div>
+            <p
+              className="mb-2"
+              style={{ color: 'rgba(255,241,0,0.65)', fontSize: '10px', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', fontFamily: 'var(--font-ibm-plex-mono, monospace)' }}
+            >
+              {pillar.dsTitle}
+            </p>
+            <p className="text-white/50 text-sm leading-relaxed">{pillar.dsDesc}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Expandable pairs */}
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="px-8 lg:px-10 py-6 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+              {pillar.pairs.map((pair, i) => (
+                <div key={i} className="grid grid-cols-[1fr_40px_1fr] gap-3 items-center">
+                  <div className="rounded-xl p-3.5" style={{ background: 'rgba(209,255,202,0.04)', border: '1px solid rgba(209,255,202,0.12)' }}>
+                    <div className="flex items-start gap-2.5">
+                      <span
+                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-[10px] font-black"
+                        style={{ background: 'rgba(209,255,202,0.15)', color: '#d1ffca' }}
+                      >
+                        {i + 1}
+                      </span>
+                      <span className="text-white/55 text-[13px] leading-snug">{pair.tv}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center">
+                    <span className="text-white/20 text-sm">↔</span>
+                  </div>
+
+                  <div className="rounded-xl p-3.5" style={{ background: 'rgba(255,241,0,0.04)', border: '1px solid rgba(255,241,0,0.12)' }}>
+                    <div className="flex items-start gap-2.5">
+                      <span
+                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-[10px] font-black"
+                        style={{ background: 'rgba(255,241,0,0.15)', color: '#fff100' }}
+                      >
+                        {i + 1}
+                      </span>
+                      <span className="text-white/55 text-[13px] leading-snug">{pair.ds}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   )
 }
 
-/* ─── sticky scroll shell ──────────────────────────────────────── */
 export default function EIOSectionV2() {
-  const containerRef             = useRef<HTMLDivElement>(null)
-  const headerRef                = useRef(null)
-  const headerInView             = useInView(headerRef, { once: true, margin: '-80px' })
-  const [activePillar, setActive] = useState(0)
-  const [hoveredPair,  setHover]  = useState<number | null>(null)
-
-  /* scroll → active pillar */
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  })
-  useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    if (v < 0.34)      setActive(0)
-    else if (v < 0.67) setActive(1)
-    else               setActive(2)
-  })
-
-  const pillar = PILLARS[activePillar]
+  const ref    = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="eio" className="bg-white">
+    <section
+      id="eio"
+      ref={ref}
+      style={{
+        backgroundColor: '#ffffff',
+        borderRadius: '64px 64px 0 0',
+        marginTop: '-64px',
+        position: 'relative',
+        zIndex: 3,
+      }}
+      className="overflow-hidden py-24 lg:py-36"
+    >
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
 
-      {/* non-sticky section header */}
-      <div ref={headerRef} className="max-w-[1400px] mx-auto px-6 lg:px-16 pt-28 pb-20">
+        {/* Section label */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="flex items-center gap-3 mb-12"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-tvblue text-xs font-bold tracking-[0.22em] uppercase">03</span>
-            <span className="h-px w-8 bg-tvblue/40 block" />
-            <span className="text-navy/35 text-xs font-bold tracking-[0.18em] uppercase">Our Integrated Model</span>
-          </div>
-          <div className="grid lg:grid-cols-2 gap-10 items-end">
-            <h2 className="text-[clamp(2.2rem,4.5vw,4.2rem)] font-black text-navy leading-[0.95] tracking-tight">
-              Enterprise Intelligence Orchestration (EIO)
-            </h2>
-            <div className="space-y-5">
-              <p className="text-navy/50 text-lg leading-relaxed max-w-[480px]">
-                TresVista and Descrial are two components of one integrated model. Our experts
-                use Descrial to orchestrate data, workflows, and AI, connecting insight to execution.
-              </p>
-              <a href="/our-solution/"
-                className="inline-flex items-center gap-2 text-sm font-bold text-tvblue hover:text-navy transition-colors duration-200 group"
-              >
-                Explore Our Solution
-                <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </a>
-            </div>
-          </div>
+          <span
+            className="text-[11px] font-bold tracking-[0.24em] uppercase"
+            style={{ color: '#000', fontFamily: 'var(--font-ibm-plex-mono, monospace)' }}
+          >
+            02
+          </span>
+          <span className="h-px w-8 bg-black/25 block" />
+          <span className="text-black/30 text-[11px] font-bold tracking-[0.18em] uppercase">Our Integrated Model</span>
         </motion.div>
-      </div>
 
-      {/* sticky scroll container — 3 × 100vh gives time to cycle all 3 pillars */}
-      <div ref={containerRef} style={{ height: '320vh' }} className="relative">
-        <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white">
+        {/* Headline + description */}
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 mb-16 lg:mb-20">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+            className="text-black"
+            style={{
+              fontFamily: 'var(--font-bebas-neue, sans-serif)',
+              fontSize: 'clamp(3rem, 6.5vw, 6.5rem)',
+              lineHeight: 0.90,
+              letterSpacing: '-0.025em',
+            }}
+          >
+            ENTERPRISE<br />INTELLIGENCE<br />ORCHESTRATION
+          </motion.h2>
 
-          {/* inner layout */}
-          <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-16">
-            <div className="grid lg:grid-cols-[280px_1fr] gap-16 items-start">
-
-              {/* LEFT: pillar list — vertical chapter navigator */}
-              <div className="hidden lg:block">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-navy/30 mb-8">Three Pillars</p>
-                <div className="space-y-1">
-                  {PILLARS.map((p, i) => {
-                    const Icon   = p.icon
-                    const isAct  = activePillar === i
-                    return (
-                      <motion.button
-                        key={p.id}
-                        onClick={() => { setActive(i); setHover(null) }}
-                        className="w-full flex items-center gap-4 py-4 px-4 rounded-2xl text-left transition-all duration-300 group"
-                        style={{
-                          background: isAct ? 'rgba(0,50,123,0.06)' : 'transparent',
-                        }}
-                        whileHover={{ x: 3 }}
-                        transition={{ duration: 0.18 }}
-                      >
-                        <div
-                          className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
-                          style={{
-                            background: isAct ? '#00327B' : 'rgba(7,18,43,0.06)',
-                          }}
-                        >
-                          <Icon size={15} style={{ color: isAct ? '#fff' : '#64748B' }} />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-[10px] font-bold uppercase tracking-widest mb-0.5"
-                            style={{ color: isAct ? '#00327B' : 'rgba(7,18,43,0.35)' }}>
-                            {p.num}
-                          </p>
-                          <p className="text-sm font-semibold leading-tight truncate"
-                            style={{ color: isAct ? '#07122B' : 'rgba(7,18,43,0.45)' }}>
-                            {p.label}
-                          </p>
-                        </div>
-                        {isAct && (
-                          <motion.div
-                            layoutId="activePillarBar"
-                            className="ml-auto w-1 h-8 rounded-full"
-                            style={{ background: '#00327B' }}
-                            transition={{ type: 'spring', stiffness: 400, damping: 38 }}
-                          />
-                        )}
-                      </motion.button>
-                    )
-                  })}
-                </div>
-
-                {/* scroll hint */}
-                <div className="mt-12 flex items-center gap-2">
-                  <motion.div
-                    className="w-5 h-8 rounded-full border border-navy/15 flex items-start justify-center pt-1.5"
-                  >
-                    <motion.div
-                      className="w-1 h-2 rounded-full bg-navy/30"
-                      animate={{ y: [0, 6, 0] }}
-                      transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                    />
-                  </motion.div>
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-navy/30 font-semibold">Scroll through</span>
-                </div>
-              </div>
-
-              {/* RIGHT: connection grid — changes per pillar */}
-              <div className="bg-white rounded-3xl border border-navy/7 p-8 shadow-[0_4px_32px_rgba(7,18,43,0.05)]">
-
-                {/* mobile pillar tabs */}
-                <div className="flex gap-2 mb-8 lg:hidden">
-                  {PILLARS.map((p, i) => {
-                    const Icon = p.icon
-                    const isAct = activePillar === i
-                    return (
-                      <button key={p.id}
-                        onClick={() => { setActive(i); setHover(null) }}
-                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200"
-                        style={{
-                          background: isAct ? 'rgba(0,50,123,0.08)' : 'rgba(7,18,43,0.04)',
-                          color:      isAct ? '#00327B'               : 'rgba(7,18,43,0.45)',
-                          border:     `1px solid ${isAct ? 'rgba(0,50,123,0.25)' : 'transparent'}`,
-                        }}
-                      >
-                        <Icon size={12} />
-                        <span className="hidden sm:inline">{p.label}</span>
-                        <span className="sm:hidden">{p.num}</span>
-                      </button>
-                    )
-                  })}
-                </div>
-
-                {/* pillar label strip */}
-                <div className="flex items-center gap-3 mb-8">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activePillar}
-                      initial={{ opacity: 0, x: 12 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -12 }}
-                      transition={{ duration: 0.28 }}
-                      className="flex items-center gap-3"
-                    >
-                      <span className="text-[10px] font-black tracking-[0.2em] uppercase text-tvblue">{pillar.num}</span>
-                      <span className="h-px w-6 bg-tvblue/40 block" />
-                      <span className="text-sm font-bold text-navy/60 uppercase tracking-[0.1em]">{pillar.label}</span>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                <ConnectionGrid
-                  pillar={pillar}
-                  hoveredPair={hoveredPair}
-                  onHover={setHover}
-                  onLeave={() => setHover(null)}
-                />
-              </div>
-
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="flex flex-col gap-5 justify-end pb-3"
+          >
+            <p className="text-[#444444] text-lg leading-relaxed max-w-[480px]">
+              TresVista and Descrial are two components of one integrated model. Our experts use Descrial
+              to orchestrate data, workflows, and AI, connecting insight to execution.
+            </p>
+            <a
+              href="/our-solution/"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-[#444444] transition-colors duration-200 group"
+            >
+              Explore Our Solution
+              <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+            </a>
+          </motion.div>
         </div>
-      </div>
 
+        {/* Pillar cards */}
+        <div className="space-y-4">
+          {PILLARS.map((pillar, i) => (
+            <PillarCard key={pillar.num} pillar={pillar} index={i} inView={inView} />
+          ))}
+        </div>
+
+      </div>
     </section>
   )
 }
