@@ -28,8 +28,8 @@ export default function WhoWeAre() {
           transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
           className="flex items-center gap-3 mb-10"
         >
-          <span className="w-8 h-[2px] bg-tvorange block" />
-          <span className="text-tvorange text-xs font-bold tracking-[0.18em] uppercase">Who We Are</span>
+          <span className="w-8 h-[2px] bg-tvblue block" />
+          <span className="text-tvblue text-xs font-bold tracking-[0.18em] uppercase">Who We Are</span>
         </motion.div>
 
         {/* two-column layout: content left, image right */}
@@ -45,8 +45,8 @@ export default function WhoWeAre() {
                   transition={{ delay: i * 0.12, duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
                 >
                   <h2
-                    className={`text-[clamp(2.6rem,5.5vw,5.6rem)] font-bold leading-[1.0] tracking-tight ${
-                      i === 1 ? 'gradient-text' : 'text-navy'
+                    className={`text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold leading-[1.0] tracking-tight ${
+                      i === 1 ? 'text-tvblue' : 'text-navy'
                     }`}
                   >
                     {line}
@@ -69,7 +69,7 @@ export default function WhoWeAre() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.36, duration: 0.65 }}
-              className="text-navy/50 text-[15px] leading-relaxed mb-10"
+              className="text-navy/50 text-base leading-relaxed mb-10"
             >
               One embedded partner. Full accountability across the value chain — from
               data infrastructure and AI governance to human-led execution at every
@@ -151,7 +151,7 @@ export default function WhoWeAre() {
               className="inline-flex items-center gap-8 flex-shrink-0 text-[13px] font-medium text-navy/35 px-6"
             >
               {item}
-              <span className="w-[3px] h-[3px] rounded-full bg-tvorange/50 flex-shrink-0" />
+              <span className="w-[3px] h-[3px] rounded-full bg-tvblue/50 flex-shrink-0" />
             </span>
           ))}
         </motion.div>

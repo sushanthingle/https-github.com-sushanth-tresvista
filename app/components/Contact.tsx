@@ -47,9 +47,9 @@ export default function Contact() {
             <span className="text-tvblue text-xs font-bold tracking-[0.14em] uppercase">Get In Touch</span>
             <span className="w-8 h-[2px] bg-tvblue block" />
           </div>
-          <h2 className="text-[clamp(2.4rem,5vw,4rem)] font-bold text-navy leading-[1.06] tracking-tight mb-4">
+          <h2 className="text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold text-navy leading-[1.06] tracking-tight mb-4">
             Start the{' '}
-            <span className="gradient-text">Conversation.</span>
+            <span className="text-tvblue">Conversation.</span>
           </h2>
           <p className="text-navy/50 text-lg max-w-[480px] mx-auto leading-relaxed">
             A conversation is the first step. Clarity is the first outcome.
@@ -73,7 +73,7 @@ export default function Contact() {
                 }}
               />
               <div className="relative z-10">
-                <h3 className="text-white font-bold text-lg mb-6 leading-snug">
+                <h3 className="text-white font-bold text-xl mb-6 leading-snug">
                   Why organisations choose TresVista
                 </h3>
                 <div className="space-y-4">
@@ -130,7 +130,7 @@ export default function Contact() {
                 >
                   <CheckCircle size={32} className="text-green-500" />
                 </motion.div>
-                <h3 className="text-navy font-bold text-2xl mb-3">Message Sent</h3>
+                <h3 className="text-navy font-bold text-xl mb-3">Message Sent</h3>
                 <p className="text-slate max-w-xs">
                   Thank you for reaching out. Our team will be in touch within one business day.
                 </p>

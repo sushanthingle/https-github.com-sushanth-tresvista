@@ -167,9 +167,9 @@ export default function WhoWeWorkWith() {
                 animate={headerInView ? { y: 0 } : {}}
                 transition={{ delay: 0.08, duration: 0.95, ease: [0.76, 0, 0.24, 1] }}
               >
-                <h2 className="text-[clamp(2.8rem,5.5vw,5.5rem)] font-bold text-navy leading-[0.97] tracking-tight">
+                <h2 className="text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold text-navy leading-[1.0] tracking-tight">
                   Who We{' '}
-                  <span className="gradient-text">Work With</span>
+                  <span className="text-tvblue">Work With</span>
                 </h2>
               </motion.div>
             </div>
@@ -179,7 +179,7 @@ export default function WhoWeWorkWith() {
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.25, duration: 0.7 }}
-            className="text-navy/55 text-[15px] leading-relaxed max-w-[380px] mt-6 lg:mt-0"
+            className="text-navy/55 text-base leading-relaxed max-w-[380px] mt-6 lg:mt-0"
           >
             Across industries, asset classes, and geographies — serving organisations
             that demand precision, speed, and accountability.

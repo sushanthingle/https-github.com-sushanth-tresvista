@@ -166,15 +166,9 @@ export default function VideoHero() {
                       animate={{ y: 0 }}
                       transition={{ delay: 0.04 + li * 0.1, duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
                     >
-                      <span className={`block font-bold leading-[1.06] tracking-[-0.01em] ${
-                        li === SLIDES[active].lines.length - 1
-                          ? 'text-transparent bg-clip-text'
-                          : 'text-white'
-                      }`}
-                        style={li === SLIDES[active].lines.length - 1
-                          ? { backgroundImage: 'linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.72) 100%)', fontSize: 'clamp(2.4rem,5.5vw,5.2rem)' }
-                          : { fontSize: 'clamp(2.4rem,5.5vw,5.2rem)' }
-                        }
+                      <span
+                        className="block font-bold leading-[1.06] tracking-[-0.01em] text-white"
+                        style={{ fontSize: 'clamp(2.8rem,5.5vw,5.5rem)' }}
                       >
                         {line}
                       </span>

@@ -21,7 +21,7 @@ const PILLARS = [
     ],
   },
   {
-    id: 1, num: '02', label: 'Human-in-Command', icon: Users, color: '#EF8014',
+    id: 1, num: '02', label: 'Human-in-Command', icon: Users, color: '#2E78E8',
     tvTitle: 'Human-in-Command',
     tvDesc: 'AI outputs are only as good as the human intelligence behind them. Our domain experts are embedded in your workflows — not just advising, but executing.',
     dsTitle: 'Agentic Workflow Orchestration',
@@ -46,7 +46,7 @@ const PILLARS = [
   },
 ]
 
-const PAIR_COLORS = ['#4A9BF5', '#EF8014', '#A78BFA']
+const PAIR_COLORS = ['#4A9BF5', '#2E78E8', '#1B4FBE']
 const SLIDE_MS    = 6500
 
 function ScanBorder({ color, reverse = false }: { color: string; reverse?: boolean }) {
@@ -283,7 +283,7 @@ function BannerSlide({
   onLeave(): void
 }) {
   const rgb    = hex2rgb(pillar.color)
-  const orgRgb = hex2rgb('#EF8014')
+  const orgRgb = hex2rgb('#2E78E8')
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px_1fr] gap-5 items-center">
@@ -301,7 +301,7 @@ function BannerSlide({
         <div className="flex items-center gap-2 mb-5">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <polygon points="0,18 9,0 18,18" fill="#1B4FBE" clipPath={`url(#tvL${pillar.id})`}/>
-            <polygon points="0,18 9,0 18,18" fill="#EF8014" clipPath={`url(#tvR${pillar.id})`}/>
+            <polygon points="0,18 9,0 18,18" fill="#2E78E8" clipPath={`url(#tvR${pillar.id})`}/>
             <defs>
               <clipPath id={`tvL${pillar.id}`}><rect x="0" y="0" width="9" height="18"/></clipPath>
               <clipPath id={`tvR${pillar.id}`}><rect x="9" y="0" width="9" height="18"/></clipPath>
@@ -312,7 +312,7 @@ function BannerSlide({
             style={{ color:`rgba(${rgb},0.45)` }}>The Talent</span>
         </div>
 
-        <h3 className="text-navy font-bold text-lg leading-snug mb-2">{pillar.tvTitle}</h3>
+        <h3 className="text-navy font-bold text-xl leading-snug mb-2">{pillar.tvTitle}</h3>
         <p className="text-sm leading-relaxed mb-6 text-navy/55">{pillar.tvDesc}</p>
 
         <div className="space-y-2">
@@ -346,15 +346,15 @@ function BannerSlide({
           boxShadow:  '0 2px 24px rgba(7,18,43,0.07)',
         }}
       >
-        <ScanBorder color="#EF8014" reverse/>
+        <ScanBorder color="#2E78E8" reverse/>
         <div className="flex items-center gap-2 mb-5">
-          <span className="text-xl font-bold leading-none text-tvorange">D</span>
-          <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-tvorange">Descrial</span>
+          <span className="text-xl font-bold leading-none" style={{ color: '#2E78E8' }}>D</span>
+          <span className="text-[11px] font-bold tracking-[0.14em] uppercase" style={{ color: '#2E78E8' }}>Descrial</span>
           <span className="ml-auto text-[9px] font-bold tracking-widest uppercase"
-            style={{ color:'rgba(239,128,20,0.45)' }}>The Platform</span>
+            style={{ color:'rgba(46,120,232,0.45)' }}>The Platform</span>
         </div>
 
-        <h3 className="text-navy font-bold text-lg leading-snug mb-2">{pillar.dsTitle}</h3>
+        <h3 className="text-navy font-bold text-xl leading-snug mb-2">{pillar.dsTitle}</h3>
         <p className="text-sm leading-relaxed mb-6 text-navy/55">{pillar.dsDesc}</p>
 
         <div className="space-y-2">
@@ -364,7 +364,7 @@ function BannerSlide({
           ))}
         </div>
 
-        <div className="h-px mt-6" style={{ background:'linear-gradient(to left,rgba(239,128,20,0.25),transparent)' }}/>
+        <div className="h-px mt-6" style={{ background:'linear-gradient(to left,rgba(46,120,232,0.25),transparent)' }}/>
       </div>
     </div>
   )
@@ -449,9 +449,9 @@ export default function EIOSection() {
               transition={{ delay:0.3, duration:0.5 }}
             />
           </div>
-          <h2 className="text-[clamp(2rem,4vw,3.2rem)] font-bold text-navy leading-[1.1] tracking-tight mb-5">
+          <h2 className="text-[clamp(2.2rem,3.8vw,3.8rem)] font-bold text-navy leading-[1.1] tracking-tight mb-5">
             Enterprise Intelligence{' '}
-            <span className="gradient-text">Orchestration</span>
+            <span className="text-tvblue">Orchestration</span>
           </h2>
           <p className="text-navy/55 text-lg max-w-[640px] mx-auto leading-relaxed">
             TresVista and Descrial are two components of one integrated model. Our experts use Descrial to orchestrate data, workflows, and AI — connecting insight to execution.
