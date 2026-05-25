@@ -22,7 +22,6 @@ const navItems = [
     label: 'Press Room', href: '#',
     dropdown: ['Press Releases', 'In The News', 'Sponsorships'],
   },
-  { label: 'Contact Us', href: '#contact', dropdown: null },
 ]
 
 export default function Navbar() {
@@ -122,7 +121,7 @@ export default function Navbar() {
             whileTap={{ scale: 0.97 }}
             className="px-5 py-2.5 bg-tvblue text-white text-sm font-semibold rounded-lg hover:bg-tvblue-light transition-colors duration-200 shadow-[0_4px_14px_rgba(0,50,123,0.30)]"
           >
-            Start the Conversation
+            Contact Us
           </motion.a>
         </div>
 
@@ -162,7 +161,7 @@ export default function Navbar() {
                 className="mt-3 px-5 py-3 bg-tvblue text-white text-sm font-semibold rounded-lg text-center"
                 onClick={() => setMobileOpen(false)}
               >
-                Start the Conversation
+                Contact Us
               </a>
             </div>
           </motion.div>

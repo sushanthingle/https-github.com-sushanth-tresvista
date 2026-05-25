@@ -92,38 +92,12 @@ export default function WhoWeAre() {
             {/* image container */}
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-[5/4]"
               style={{ boxShadow: '0 24px 80px rgba(7,18,43,0.10)' }}>
-              {/* corporate office building — replace with your own image */}
               <img
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=960&q=80"
                 alt="Corporate headquarters"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-
-              {/* stat overlay — bottom-left badge */}
-              <div className="absolute bottom-5 left-5 right-5 flex gap-3">
-                {[
-                  { v: '19+', l: 'Years' },
-                  { v: '2000+', l: 'Experts' },
-                  { v: '1000+', l: 'Clients' },
-                ].map(({ v, l }) => (
-                  <div key={l}
-                    className="flex-1 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-2.5 text-center"
-                    style={{ boxShadow: '0 4px 16px rgba(7,18,43,0.10)' }}>
-                    <p className="text-navy font-bold text-base leading-none tabular-nums">{v}</p>
-                    <p className="text-navy/40 text-[10px] font-semibold uppercase tracking-wider mt-1">{l}</p>
-                  </div>
-                ))}
-              </div>
             </div>
-
-            {/* floating accent badge */}
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-5 -right-5 bg-tvblue text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg"
-            >
-              19+ Years
-            </motion.div>
           </motion.div>
         </div>
       </div>
