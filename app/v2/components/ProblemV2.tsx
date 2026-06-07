@@ -150,7 +150,7 @@ export default function ProblemV2() {
               className="pt-4"
             >
               <a
-                href="/au/"
+                href="/v2/au/"
                 className="inline-flex items-center gap-2.5 px-7 py-4 bg-tvblue text-white text-sm font-semibold rounded-2xl hover:bg-tvblue-light transition-colors duration-200 group shadow-[0_2px_12px_rgba(0,50,123,0.22)]"
               >
                 Read Our Story
