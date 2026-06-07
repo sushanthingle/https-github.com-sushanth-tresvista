@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Menu, X } from 'lucide-react'
 
 const NAV_ITEMS = [
-  { label: 'About Us',      href: '/au/',             dropdown: null },
+  { label: 'About Us',      href: '/v2/au/',           dropdown: null },
   { label: 'Our Solutions', href: '/our-solution/',    dropdown: null },
   { label: 'Who We Serve',  href: '#workflows',        dropdown: ['Private Equity', 'Investment Banks', 'Corporates & Hedge Funds'] },
   { label: 'Insights',      href: '#insights',         dropdown: ['TresVista Talk', 'TresVista Perspective', 'Case Studies'] },
