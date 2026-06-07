@@ -37,16 +37,16 @@ export default function NavbarV2() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
 
         {/* Logo */}
-        <a href="/" className="flex items-center relative h-10">
+        <a href="/" className="flex items-center relative h-11">
           <img
             src="/logo-white.svg"
             alt="TresVista"
-            className={`h-9 w-auto absolute transition-all duration-300 ${scrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+            className={`h-11 w-auto absolute transition-all duration-300 ${scrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
           />
           <img
             src="/logo-dark.svg"
             alt="TresVista"
-            className={`h-9 w-auto transition-all duration-300 ${scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            className={`h-11 w-auto transition-all duration-300 ${scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
           />
         </a>
 

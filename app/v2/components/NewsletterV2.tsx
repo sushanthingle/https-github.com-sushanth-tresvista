@@ -29,7 +29,7 @@ export default function NewsletterV2() {
       id="newsletter"
       ref={sectionRef}
       style={{ backgroundColor: '#00327B', borderRadius: '64px 64px 0 0', marginTop: '-64px', position: 'relative', zIndex: 7 }}
-      className="overflow-hidden py-24 lg:py-32"
+      className="overflow-hidden py-28 lg:py-36"
     >
       {/* Subtle grid */}
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -70,7 +70,7 @@ export default function NewsletterV2() {
             >
               <span
                 className="block text-white"
-                style={{ fontFamily: 'var(--font-montserrat, sans-serif)', fontWeight: 800, fontSize: 'clamp(2.2rem, 5vw, 5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
+                style={{ fontWeight: 700, fontSize: 'clamp(2.2rem, 4vw, 4rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
               >
                 {line}
               </span>

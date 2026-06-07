@@ -53,7 +53,7 @@ export default function ContactV2() {
       id="contact"
       ref={sectionRef}
       style={{ backgroundColor: '#ffffff', borderRadius: '64px 64px 0 0', marginTop: '-64px', position: 'relative', zIndex: 8 }}
-      className="overflow-hidden py-24 lg:py-36"
+      className="overflow-hidden py-28 lg:py-36"
     >
       {/* Subtle grid */}
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -61,7 +61,7 @@ export default function ContactV2() {
         backgroundSize: '80px 80px',
       }} />
 
-      <div ref={ref} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div ref={ref} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-16">
 
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-16 lg:mb-20">
@@ -90,7 +90,7 @@ export default function ContactV2() {
                 >
                   <span
                     className="block text-navy"
-                    style={{ fontFamily: 'var(--font-montserrat, sans-serif)', fontWeight: 800, fontSize: 'clamp(3rem, 6.5vw, 6.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
+                    style={{ fontWeight: 700, fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
                   >
                     {line}
                   </span>
@@ -273,7 +273,7 @@ export default function ContactV2() {
                     disabled={loading || !privacy}
                     whileHover={!loading && privacy ? { scale: 1.02 } : {}}
                     whileTap={!loading && privacy ? { scale: 0.97 } : {}}
-                    className="mt-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-tvblue text-white text-sm font-semibold rounded-[8px] hover:bg-tvblue-light transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-[0_2px_12px_rgba(0,50,123,0.22)]"
+                    className="mt-1 inline-flex items-center justify-center gap-2.5 px-7 py-4 bg-tvblue text-white text-sm font-semibold rounded-2xl hover:bg-tvblue-light transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-[0_2px_12px_rgba(0,50,123,0.22)]"
                   >
                     {loading ? (
                       <>

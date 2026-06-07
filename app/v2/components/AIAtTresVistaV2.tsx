@@ -26,9 +26,9 @@ export default function AIAtTresVistaV2() {
       id="ai-tresvista"
       ref={sectionRef}
       style={{ backgroundColor: '#F4F7FB', borderRadius: '64px 64px 0 0', marginTop: '-64px', position: 'relative', zIndex: 6 }}
-      className="overflow-hidden py-24 lg:py-36"
+      className="overflow-hidden py-28 lg:py-36"
     >
-      <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-16">
 
         {/* Section label */}
         <motion.div
@@ -60,7 +60,7 @@ export default function AIAtTresVistaV2() {
                 >
                   <span
                     className="block text-navy"
-                    style={{ fontFamily: 'var(--font-montserrat, sans-serif)', fontWeight: 800, fontSize: 'clamp(3.5rem, 8vw, 8rem)', lineHeight: 0.95, letterSpacing: '-0.035em' }}
+                    style={{ fontWeight: 700, fontSize: 'clamp(2.8rem, 5.5vw, 5.5rem)', lineHeight: 0.95, letterSpacing: '-0.035em' }}
                   >
                     {line}
                   </span>
@@ -99,7 +99,7 @@ export default function AIAtTresVistaV2() {
 
             <motion.a
               href="/ai-ecosystem/"
-              className="inline-flex items-center gap-2.5 px-5 py-3 bg-tvblue text-white text-sm font-semibold rounded-[8px] hover:bg-tvblue-light transition-colors duration-200 group shadow-[0_2px_12px_rgba(0,50,123,0.22)]"
+              className="inline-flex items-center gap-2.5 px-7 py-4 bg-tvblue text-white text-sm font-semibold rounded-2xl hover:bg-tvblue-light transition-colors duration-200 group shadow-[0_2px_12px_rgba(0,50,123,0.22)]"
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.65, duration: 0.55 }}

@@ -32,9 +32,9 @@ export default function ProblemV2() {
       id="problem"
       ref={sectionRef}
       style={{ backgroundColor: '#ffffff', borderRadius: '64px 64px 0 0', marginTop: '-64px', position: 'relative', zIndex: 2 }}
-      className="overflow-hidden py-24 lg:py-36"
+      className="overflow-hidden py-28 lg:py-36"
     >
-      <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-16">
 
         {/* Section label */}
         <motion.div
@@ -67,7 +67,7 @@ export default function ProblemV2() {
                   >
                     <span
                       className="block text-navy"
-                      style={{ fontFamily: 'var(--font-montserrat, sans-serif)', fontWeight: 800, fontSize: 'clamp(2.8rem, 6vw, 6.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
+                      style={{ fontWeight: 700, fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
                     >
                       {line}
                     </span>
@@ -105,7 +105,7 @@ export default function ProblemV2() {
                       initial={{ y: '110%' }}
                       animate={inView ? { y: 0 } : {}}
                       transition={{ delay: 0.55 + i * 0.1, duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-                      style={{ fontFamily: 'var(--font-montserrat, sans-serif)', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3rem)', letterSpacing: '-0.03em' }}
+                      style={{ fontWeight: 700, fontSize: 'clamp(2rem, 4vw, 3rem)', letterSpacing: '-0.03em' }}
                     >
                       {value}
                     </motion.p>
@@ -151,7 +151,7 @@ export default function ProblemV2() {
             >
               <a
                 href="/au/"
-                className="inline-flex items-center gap-2.5 px-5 py-3 bg-tvblue text-white text-sm font-semibold rounded-[8px] hover:bg-tvblue-light transition-colors duration-200 group shadow-[0_2px_12px_rgba(0,50,123,0.22)]"
+                className="inline-flex items-center gap-2.5 px-7 py-4 bg-tvblue text-white text-sm font-semibold rounded-2xl hover:bg-tvblue-light transition-colors duration-200 group shadow-[0_2px_12px_rgba(0,50,123,0.22)]"
               >
                 Read Our Story
                 <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />

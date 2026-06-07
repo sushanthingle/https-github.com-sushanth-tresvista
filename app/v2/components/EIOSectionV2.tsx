@@ -267,15 +267,7 @@ function BannerSlide({ pillar, hoveredPair, onHover, onLeave }: {
       >
         <ScanBorder color={pillar.color}/>
         <div className="flex items-center gap-2 mb-5">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <polygon points="0,18 9,0 18,18" fill="#00327B" clipPath={`url(#tvL${pillar.id})`}/>
-            <polygon points="0,18 9,0 18,18" fill="#347EF6" clipPath={`url(#tvR${pillar.id})`}/>
-            <defs>
-              <clipPath id={`tvL${pillar.id}`}><rect x="0" y="0" width="9" height="18"/></clipPath>
-              <clipPath id={`tvR${pillar.id}`}><rect x="9" y="0" width="9" height="18"/></clipPath>
-            </defs>
-          </svg>
-          <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-tvblue">TresVista</span>
+          <img src="/logo-dark.svg" className="h-5 w-auto" alt="TresVista" />
           <span className="ml-auto text-[9px] font-bold tracking-widest uppercase" style={{ color:`rgba(${rgb},0.45)` }}>The Talent</span>
         </div>
         <h3 className="text-navy font-bold text-xl leading-snug mb-2">{pillar.tvTitle}</h3>
@@ -365,7 +357,7 @@ export default function EIOSectionV2() {
       id="eio"
       ref={sectionRef}
       style={{ backgroundColor: '#ffffff', borderRadius: '64px 64px 0 0', marginTop: '-64px', position: 'relative', zIndex: 4 }}
-      className="overflow-hidden py-24 lg:py-36"
+      className="overflow-hidden py-28 lg:py-36"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -402,7 +394,7 @@ export default function EIOSectionV2() {
               animate={inView ? { y: 0 } : {}}
               transition={{ duration: 0.85, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
               className="text-navy leading-[1.1] tracking-tight mb-5"
-              style={{ fontFamily: 'var(--font-montserrat, sans-serif)', fontWeight: 800, fontSize: 'clamp(2.2rem, 3.8vw, 3.8rem)' }}
+              style={{ fontWeight: 700, fontSize: 'clamp(2.2rem, 3.8vw, 3.8rem)' }}
             >
               Enterprise Intelligence Orchestration
             </motion.h2>

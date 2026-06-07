@@ -45,13 +45,12 @@ export default function HeroV2() {
   const [loaded,  setLoaded]  = useState(false)
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
+  const videoScale  = useTransform(scrollYProgress, [0, 1], [1.0, 1.12])
   const rawContentY = useTransform(scrollYProgress, [0, 1], ['0%', '-22%'])
-  const rawBlocksY  = useTransform(scrollYProgress, [0, 1], ['0%', '-8%'])
   const rawFadeOut  = useTransform(scrollYProgress, [0, 0.55], [1, 0])
   const rawStatsY   = useTransform(scrollYProgress, [0, 1], ['0%', '-5%'])
 
   const contentY = useSpring(rawContentY, { stiffness: 80, damping: 25 })
-  const blocksY  = useSpring(rawBlocksY,  { stiffness: 60, damping: 20 })
   const fadeOut  = useSpring(rawFadeOut,  { stiffness: 80, damping: 30 })
   const statsY   = useSpring(rawStatsY,   { stiffness: 80, damping: 25 })
 
@@ -81,72 +80,30 @@ export default function HeroV2() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Animated ambient gradient per slide */}
+      {/* Video background */}
       <motion.div
-        className="absolute inset-0 pointer-events-none"
-        animate={{ background: `radial-gradient(ellipse at 30% 40%, ${slide.accent}1A 0%, transparent 60%)` }}
-        transition={{ duration: 1.2 }}
-      />
-
-      {/* Subtle grid */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px)',
-        backgroundSize: '80px 80px',
-      }} />
-
-      {/* Parallax geometric blocks */}
-      <motion.div
-        className="absolute right-0 top-[72px] bottom-32 w-[46%] pointer-events-none hidden lg:block overflow-hidden"
-        style={{ y: blocksY, opacity: fadeOut }}
+        className="absolute inset-0 origin-center pointer-events-none overflow-hidden"
+        style={{ scale: videoScale }}
       >
-        <motion.div
-          initial={{ opacity: 0, x: 80, scale: 0.85 }}
-          animate={loaded ? { opacity: 1, x: 0, scale: 1 } : {}}
-          transition={{ duration: 1.2, delay: 0.5, ease: [0.76, 0, 0.24, 1] }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <svg viewBox="0 0 580 520" className="w-full max-w-[500px]">
-            <motion.rect x="60" y="40" width="240" height="240" rx="32"
-              fill="#00327B"
-              animate={{ y: [40, 26, 40] }}
-              transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.rect x="280" y="20" width="170" height="170" rx="28"
-              fill="#347EF6"
-              animate={{ y: [20, 36, 20] }}
-              transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}
-            />
-            <motion.rect x="40" y="280" width="150" height="150" rx="24"
-              fill="#F6B343"
-              animate={{ y: [280, 266, 280] }}
-              transition={{ duration: 7.0, repeat: Infinity, ease: 'easeInOut', delay: 1.3 }}
-            />
-            <motion.rect x="210" y="305" width="130" height="130" rx="22"
-              fill="#E6F0FF"
-              animate={{ y: [305, 320, 305] }}
-              transition={{ duration: 5.8, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-            />
-            <motion.rect x="365" y="215" width="105" height="105" rx="18"
-              fill="#0D2460"
-              animate={{ y: [215, 230, 215] }}
-              transition={{ duration: 6.2, repeat: Infinity, ease: 'easeInOut', delay: 1.8 }}
-            />
-            <motion.rect x="410" y="95" width="72" height="72" rx="14"
-              fill="#ffffff" opacity={0.06}
-              animate={{ y: [95, 80, 95] }}
-              transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 2.1 }}
-            />
-            <rect x="64"  y="44"  width="232" height="28" rx="14" fill="rgba(255,255,255,0.07)" />
-            <rect x="284" y="24"  width="162" height="20" rx="10" fill="rgba(255,255,255,0.18)" />
-            <rect x="44"  y="284" width="142" height="18" rx="9"  fill="rgba(255,255,255,0.22)" />
-          </svg>
-        </motion.div>
+        <iframe
+          src="https://www.youtube.com/embed/s9xk77X4m5c?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&playlist=s9xk77X4m5c&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3"
+          allow="autoplay; encrypted-media"
+          title="Background video"
+          className="absolute pointer-events-none"
+          style={{ top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '100vw', height: '56.25vw', minHeight: '100%', minWidth: 'calc(100% * 16 / 9)', border: 'none' }}
+        />
       </motion.div>
+
+      {/* Overlays */}
+      <div className="absolute inset-0 bg-[#020811]/62 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(2,8,17,0.82) 0%, rgba(2,8,17,0.55) 45%, rgba(2,8,17,0.18) 75%, transparent 100%)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(2,8,17,0.45) 0%, transparent 40%)' }} />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(2,8,17,0.55) 0%, transparent 35%)' }} />
 
       {/* Main content */}
       <motion.div
         style={{ y: contentY, opacity: fadeOut }}
-        className="relative z-10 flex-1 flex flex-col justify-center max-w-[1400px] mx-auto w-full px-6 lg:px-12 py-16 lg:py-20"
+        className="relative z-10 flex-1 flex flex-col justify-center max-w-[1400px] mx-auto w-full px-6 lg:px-16 py-16 lg:py-20"
       >
         {/* Kicker */}
         <motion.div
@@ -197,14 +154,8 @@ export default function HeroV2() {
                       transition={{ duration: 0.9, delay: i * 0.12, ease: [0.76, 0, 0.24, 1] }}
                     >
                       <span
-                        className="block text-white"
-                        style={{
-                          fontFamily: 'var(--font-montserrat, sans-serif)',
-                          fontWeight: 800,
-                          fontSize: 'clamp(3rem, 7.5vw, 8rem)',
-                          lineHeight: 0.95,
-                          letterSpacing: '-0.035em',
-                        }}
+                        className="block text-white font-bold"
+                        style={{ fontSize: 'clamp(3rem, 7.5vw, 8rem)', lineHeight: 0.95, letterSpacing: '-0.035em' }}
                       >
                         {line}
                       </span>
@@ -218,7 +169,7 @@ export default function HeroV2() {
                   initial={{ opacity: 0, filter: 'blur(8px)', y: 12 }}
                   animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
                   transition={{ delay: 0.45, duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
-                  className="text-white/50 text-[17px] leading-relaxed max-w-[400px]"
+                  className="text-white/55 text-lg leading-relaxed max-w-[400px]"
                 >
                   {slide.description}
                 </motion.p>
@@ -231,7 +182,7 @@ export default function HeroV2() {
                 >
                   <a
                     href={slide.cta.href}
-                    className="inline-flex items-center gap-2.5 px-5 py-3 text-white text-sm font-semibold rounded-[8px] hover:opacity-90 transition-all duration-200 group shadow-[0_4px_20px_rgba(0,0,0,0.25)]"
+                    className="inline-flex items-center gap-2.5 px-7 py-4 text-white text-sm font-semibold rounded-2xl hover:opacity-90 transition-all duration-200 group shadow-[0_4px_20px_rgba(0,0,0,0.25)]"
                     style={{ backgroundColor: slide.accent }}
                   >
                     {slide.cta.label}
@@ -295,10 +246,10 @@ export default function HeroV2() {
 
       {/* Stats strip */}
       <motion.div
-        style={{ y: statsY, borderTop: '1px solid rgba(255,255,255,0.08)', backgroundColor: 'rgba(255,255,255,0.03)' }}
+        style={{ y: statsY, borderTop: '1px solid rgba(255,255,255,0.08)', backgroundColor: 'rgba(2,8,17,0.45)' }}
         className="relative z-10"
       >
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 grid grid-cols-2 lg:grid-cols-4">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-16 grid grid-cols-2 lg:grid-cols-4">
           {STATS.map(({ value, label }, i) => (
             <motion.div
               key={label}
@@ -309,11 +260,11 @@ export default function HeroV2() {
             >
               <div style={{ overflow: 'hidden' }}>
                 <motion.p
-                  className="text-white leading-none"
+                  className="text-white font-bold leading-none"
                   initial={{ y: '110%' }}
                   animate={loaded ? { y: 0 } : {}}
                   transition={{ delay: 1.1 + i * 0.08, duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-                  style={{ fontFamily: 'var(--font-montserrat, sans-serif)', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '-0.03em' }}
+                  style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '-0.03em' }}
                 >
                   {value}
                 </motion.p>

@@ -61,9 +61,9 @@ export default function WorkflowsV2() {
       id="workflows"
       ref={sectionRef}
       style={{ backgroundColor: '#F4F7FB', borderRadius: '64px 64px 0 0', marginTop: '-64px', position: 'relative', zIndex: 3 }}
-      className="overflow-hidden py-24 lg:py-36"
+      className="overflow-hidden py-28 lg:py-36"
     >
-      <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-16">
 
         {/* Section label */}
         <motion.div
@@ -95,7 +95,7 @@ export default function WorkflowsV2() {
                 >
                   <span
                     className="block text-navy"
-                    style={{ fontFamily: 'var(--font-montserrat, sans-serif)', fontWeight: 800, fontSize: 'clamp(2.4rem, 5.5vw, 5.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
+                    style={{ fontWeight: 700, fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
                   >
                     {line}
                   </span>

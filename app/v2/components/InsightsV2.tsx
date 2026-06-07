@@ -48,7 +48,7 @@ export default function InsightsV2() {
       id="insights"
       ref={sectionRef}
       style={{ backgroundColor: '#07122B', borderRadius: '64px 64px 0 0', marginTop: '-64px', position: 'relative', zIndex: 5 }}
-      className="overflow-hidden py-24 lg:py-36"
+      className="overflow-hidden py-28 lg:py-36"
     >
       {/* Subtle grid */}
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -56,7 +56,7 @@ export default function InsightsV2() {
         backgroundSize: '80px 80px',
       }} />
 
-      <div ref={ref} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div ref={ref} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-16">
 
         {/* Section label */}
         <motion.div
@@ -87,7 +87,7 @@ export default function InsightsV2() {
                 >
                   <span
                     className="block text-white"
-                    style={{ fontFamily: 'var(--font-montserrat, sans-serif)', fontWeight: 800, fontSize: 'clamp(3rem, 6vw, 6rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
+                    style={{ fontWeight: 700, fontSize: 'clamp(2.5rem, 4vw, 4.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}
                   >
                     {line}
                   </span>
